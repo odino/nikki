@@ -1,6 +1,6 @@
 /**
  * Handling socket events.
- * 
+ *
  * @type {*}
  */
 var fs          = require('fs');

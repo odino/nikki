@@ -1,4 +1,4 @@
 node_modules/
 *.log
-client/nikki.js
+client/index.js
 bower_components/

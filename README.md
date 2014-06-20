@@ -33,6 +33,16 @@ once you start the IDE:
 nikki --port 80
 ```
 
+## Development
+
+You can contribute to nikki by simply forking this repo and
+running it locally; `cd` into nikki's root, run `npm install`
+and `bower install` and launch the app with:
+
+```
+gulp develop
+```
+
 ## License
 
 For the ones who care, nikki is released under the MIT license.
