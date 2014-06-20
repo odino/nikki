@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/bower_components/prismjs/prism-twilight.css" />
+        <style>
+            .token.lf:before, .token.tab:not(:empty):before {
+                content: '';
+            }
+
+            pre[class*=language-]>code[data-language] {
+                overflow: hidden;
+                overflow-y: scroll;
+                max-height: 100%;
+            }
+
+            [contenteditable]:focus {
+                outline: none;
+            }
+        </style>
+    </head>
+    <body>
+        <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="/bower_components/prismjs/prism.js"></script>
+        <script src="/bower_components/lodash/dist/lodash.min.js"></script>
+        <script src="/bower_components/KeyboardJS/keyboard.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/client/nikki.js"></script>
+    </body>
+</html>

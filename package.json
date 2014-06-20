@@ -1,0 +1,31 @@
+{
+  "name": "nikki",
+  "version": "0.1.0",
+  "description": "A web based IDE written in NodeJS. For Real.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/odino/nikki"
+  },
+  "keywords": [
+    "ide",
+    "text",
+    "editor",
+    "swag"
+  ],
+  "author": "odino <alessandro.nadalin@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/odino/nikki/issues"
+  },
+  "homepage": "https://github.com/odino/nikki",
+  "dependencies": {
+    "socket.io": "^1.0.5",
+    "node-dir": "^0.1.5",
+    "lodash": "^2.4.1",
+    "yargs": "^1.2.5"
+  }
+}

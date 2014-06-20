@@ -1,0 +1,4 @@
+node_modules/
+*.log
+client/nikki.js
+bower_components/
