@@ -1,0 +1,13 @@
+.token.lf:before, .token.tab:not(:empty):before {
+    content: '';
+}
+
+pre[class*=language-]>code[data-language] {
+    overflow: hidden;
+    overflow-y: scroll;
+    max-height: 100%;
+}
+
+[contenteditable]:focus {
+    outline: none;
+}
