@@ -45,6 +45,7 @@ module.exports = {
             socket.on('resource.save', function(resource){
                 fs.writeFile(resource.path, resource.data, function(err) {
                     if (err) throw err;
+                    socket.emit('resource.saved', resource);
                 });
             });
         });

@@ -7,6 +7,7 @@
 var history     = require('./history');
 var state       = require('./state');
 var keyboard    = require('./keyboard');
+var bar         = require('./bar');
 
 module.exports = function(socket) {
     keyboard.on('tab', function() {
@@ -15,6 +16,7 @@ module.exports = function(socket) {
     });
 
     keyboard.on('ctrl + s', function() {
+        bar.alert('Saving...');
         state.openFile.data = $('[id="file-' + state.openFile.path + '"]').text();
         socket.emit('resource.save', state.openFile);
         return false;
@@ -32,7 +34,10 @@ module.exports = function(socket) {
         if (history.past.length) {
             history.future.push($('[id="file-' + state.openFile.path + '"]').text());
             $('[id="file-' + state.openFile.path + '"]').text(history.past.pop());
+        } else {
+            bar.alert("We reached the beginning of the history");
         }
+
         return false;
     });
 
@@ -40,7 +45,10 @@ module.exports = function(socket) {
         if (history.future.length) {
             history.past.push($('[id="file-' + state.openFile.path + '"]').text());
             $('[id="file-' + state.openFile.path + '"]').text(history.future.pop());
+        } else {
+            bar.alert("We reached the end of the history");
         }
+
         return false;
     });
 };

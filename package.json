@@ -32,6 +32,7 @@
     "gulp-jshint": "^1.6.3",
     "gulp-load-plugins": "^0.5.1",
     "run-sequence": "^0.3.6",
-    "gulp-nodemon": "^1.0.4"
+    "gulp-nodemon": "^1.0.4",
+    "browserify": "^4.1.11"
   }
 }

@@ -10,8 +10,4 @@ var history = {
     future: []
 };
 
-events.on('resource.opened', function(resource){
-    history.past.push($('[id="file-' + resource.path + '"]').text());
-});
-
 module.exports = history;
