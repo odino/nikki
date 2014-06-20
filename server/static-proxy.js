@@ -1,3 +1,8 @@
+/**
+ * A simple proxy for serving aliased client files.
+ *
+ * @type {*}
+ */
 var fs   = require('fs');
 var p    = require('path');
 

@@ -15,4 +15,7 @@ function handler (req, res) {
     serveIndex(req, res);
 }
 
+/**
+ * HERE STARTS THE FUN!
+ */
 socket.startTheFun(app);

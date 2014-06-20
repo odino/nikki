@@ -1,3 +1,8 @@
+/**
+ * A simple utility to serve the index.html.
+ *
+ * @type {*}
+ */
 var fs = require('fs');
 
 module.exports = function(req, res) {
