@@ -1,4 +1,4 @@
-var socket = io('http://localhost:9123');
+var socket = io('http://localhost:' + window.location.port);
 
 require('./fs')(socket);
 require('./resource')(socket);
