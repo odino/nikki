@@ -4,7 +4,8 @@
   "description": "A web based IDE written in NodeJS. For Real.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "postinstall": "./node_modules/bower/bin/bower install"
   },
   "repository": {
     "type": "git",
@@ -33,6 +34,7 @@
     "gulp-load-plugins": "^0.5.1",
     "run-sequence": "^0.3.6",
     "gulp-nodemon": "^1.0.4",
-    "browserify": "^4.1.11"
+    "browserify": "^4.1.11",
+    "bower": "^1.3.5"
   }
 }
