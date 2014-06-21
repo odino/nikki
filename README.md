@@ -53,6 +53,11 @@ wanna open another file without using the mouse)
 Nikki should work on all modern browser but, to be sure,
 *just use chrome man* :)
 
+Jokes apart, bear in mind that this started as an idea a very long
+time ago but got concrete in a weekend, so it's  still experimental:
+try playing with it, report bugs if you find any and I'll be very
+happy to add stuff on nikki.
+
 By the way, I'm [quite sure](https://github.com/odino/nikki/blob/40103e48439f763697f3227289d1a73735ea815a/server/socket.js#L45)
 that this thing doesn't work on windows -- maybe if it
 gets some love we'll add support as it's a matter of
@@ -67,11 +72,6 @@ and `bower install` and launch the app with:
 ```
 gulp develop
 ```
-
-Jokes apart, bear in mind that this started as an idea a very long
-time ago but got concrete in a weekend, so it's  still experimental:
-try playing with it, report bugs if you find any and I'll be very
-happy to add stuff on nikki.
 
 ## License
 
