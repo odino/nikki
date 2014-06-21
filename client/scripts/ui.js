@@ -1,10 +1,11 @@
 var body    = $('body');
 var events  = require('./events');
+var utils   = require('./utils');
 
 var ui = {
     openFile: function(resource) {
         var tab     = $('<pre>');
-        var code    = $('<code class="language-javascript" contenteditable>');
+        var code    = $('<code class="language-' + utils.guessLanguage(resource.name) + '" contenteditable>');
 
         code.attr('id', 'file-' + resource.path);
         code.text(resource.data);
