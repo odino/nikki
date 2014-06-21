@@ -32,8 +32,12 @@ If you wish to start nikki on another port, simply specify it
 once you start the IDE:
 
 ```
-nikki --port 80
+nikki --port
 ```
+
+If you feel lost, simply run a `nikki --help` and get some comfort.
+
+## Shortcuts
 
 Nikki is thought with shortcuts in mind and focused on letting
 you write code without using your mouse.

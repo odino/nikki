@@ -18,7 +18,9 @@ if (argv.help) {
     console.log(' * repository: ' + config.repository.url);
     console.log(' * bugs: ' + config.bugs.url);
     console.log();
-    console.log('proudly crafted by ' + config.author + ' and released under the ' + config.license + ' licese');
+    console.log("To start the IDE, simply run the `nikki` command.");
+    console.log();
+    console.log('Proudly crafted by ' + config.author + ' and released under the ' + config.license + ' license');
 
     return;
 }
