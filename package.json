@@ -8,7 +8,7 @@
     "postinstall": "./node_modules/bower/bin/bower install && ./node_modules/browserify/bin/cmd.js client/scripts/index.js > client/index.js"
   },
   "bin": {
-    "browserify": "bin/nikki"
+    "nikki": "bin/nikki"
   },
   "repository": {
     "type": "git",
