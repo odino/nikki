@@ -84,7 +84,8 @@ gulp develop
 
 Among the things I wanna add in the next weeks:
 
-* search for files
+* search for files in the current dir
+* search for files, recursively, from the current dir
 * some refactoring (as it's a WE project)
 * [tests](http://liamkaufman.com/blog/2012/01/28/testing-socketio-with-mocha-should-and-socketio-client/)
 * windows support (it really hurts to write this one)
