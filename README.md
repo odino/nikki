@@ -80,6 +80,18 @@ and `bower install` and launch the app with:
 gulp develop
 ```
 
+Among the things I wanna add in the next weeks:
+
+* search for files
+* better history (`ctrl + z` and `ctrl + shift + z` are buggy now)
+* some refactoring (as it's a WE project)
+* [tests](http://liamkaufman.com/blog/2012/01/28/testing-socketio-with-mocha-should-and-socketio-client/)
+* windows support (it really hurts to write this one)
+
+By the way, the layout sucks, **big time**: never been a genious
+with HTML and CSS so if you guys wanna come up with something I'd
+be super happy.
+
 ## License
 
 For the ones who care, nikki is released under the MIT license.
