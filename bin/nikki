@@ -1,16 +1,4 @@
 #!/usr/bin/env node
 'use strict';
-var fs = require('fs');
-
-var browserify = require('browserify');
-var b = browserify([__dirname + '/../client/scripts/index.js']);
-
-b.bundle({}, function(err, js){
-    fs.writeFile(__dirname + '/../client/index.js', js, function(err) {
-        if (err) throw err;
-    });
-});
-
-
 
 require('./../server/nikki')
