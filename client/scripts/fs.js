@@ -14,14 +14,14 @@ var buildTitle = function(path) {
         title.append(segment);
     });
 
-    $('#subject').append(title);
+    $('#subject').html('').append(title);
 }
 
 module.exports = function(socket) {
     socket.on('fs.root', function (resources) {
-        buildTitle(window.location.pathname)
+        buildTitle(resources[0].parent)
         var fs      = $('<ul>')
-        $('#fs').append(fs);
+        $('#fs').html('').append(fs);
 
         _.each(resources, function(resource){
             var res = $('<li>')
