@@ -24,10 +24,15 @@ module.exports = function(socket) {
         $('#fs').html('').append(filesystem);
         history.pushState(null, null, fs.root.path);
 
-        _.each(fs.resources, function(resource){
+        _.each(fs.resources, function(resource, index){
             var res = $('<li>')
             res.addClass(resource.type);
             res.addClass('resource');
+
+            if (index === 0) {
+                res.addClass('active');
+            }
+
             res.attr('id', resource.path);
             res.text(resource.name);
             res.hover(function(){
