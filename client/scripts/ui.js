@@ -1,4 +1,3 @@
-var body    = $('body');
 var events  = require('./events');
 var utils   = require('./utils');
 
@@ -11,7 +10,7 @@ var ui = {
         code.text(resource.data);
         tab.html(code);
 
-        body.append(tab);
+        $('#file').html(tab);
     }
 };
 

@@ -7,7 +7,15 @@
 var events  = require('./events');
 
 var state   = {
-    openFile: null
+    openFile: null,
+    focus:    'fs',
+    switchFocus: function() {
+        if (this.focus === 'fs') {
+            this.focus = 'tab';
+        } else {
+            this.focus = 'fs';
+        }
+    }
 }
 
 events.on('resource.opened', function(resource){

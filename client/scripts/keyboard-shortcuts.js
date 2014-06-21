@@ -51,4 +51,42 @@ module.exports = function(socket) {
 
         return false;
     });
+
+    keyboard.on('down', function() {
+        var resource = $('.resource.active');
+        var canGoDown = resource.next().hasClass('resource');
+
+        if (canGoDown) {
+            resource.removeClass('active');
+            resource.next().addClass('active');
+        } else {
+            bar.alert("Where ya goin?")
+        }
+
+        return false;
+    });
+
+    keyboard.on('up', function() {
+        var resource = $('.resource.active');
+        var canGoDown = resource.prev().hasClass('resource');
+
+        if (canGoDown) {
+            resource.removeClass('active');
+            resource.prev().addClass('active');
+        } else {
+            bar.alert("Where ya goin?")
+        }
+
+        return false;
+    });
+
+    keyboard.on('space', function() {
+        var resource = $('.resource.active');
+
+        if (resource) {
+            socket.emit('resource.open', JSON.parse(resource.attr('data-resource')))
+        }
+
+        return false;
+    });
 };

@@ -36,6 +36,34 @@ pre[class*=language-]>code[data-language] {
     font-size: 1.2em;
 }
 
+#fs {
+    font-size: 1.3em;
+}
+
+#fs ul {
+    list-style-type: none;
+}
+
+#root {
+
+}
+
+#container {
+    margin-top: 1em;
+}
+
+#subject {
+    margin-bottom: 2em;
+}
+
+.resource {
+    padding: 10px;
+}
+
+.resource.active {
+    background-color: #cccccc;
+}
+
 * {
     font-family: Consolas, Monaco, 'Andale Mono', monospace;
 }
