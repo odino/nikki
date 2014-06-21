@@ -1,5 +1,4 @@
 var state   = require('./state');
-var history = require('./history');
 var events  = require('./events');
 var bar     = require('./bar');
 

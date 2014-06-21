@@ -51,6 +51,8 @@ while using it:
 * press `ctrl + x` to switch the focus between the filesystem structure
 and the editor tab (this is handy when you open a file, save it and then
 wanna open another file without using the mouse)
+* use `ctrl + z` to undo
+* use `ctrl + shift + z` to redo
 
 ## Support
 
@@ -83,7 +85,6 @@ gulp develop
 Among the things I wanna add in the next weeks:
 
 * search for files
-* better history (`ctrl + z` and `ctrl + shift + z` are buggy now)
 * some refactoring (as it's a WE project)
 * [tests](http://liamkaufman.com/blog/2012/01/28/testing-socketio-with-mocha-should-and-socketio-client/)
 * windows support (it really hurts to write this one)

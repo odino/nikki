@@ -4,7 +4,6 @@
  *
  * @type {exports}
  */
-var history     = require('./history');
 var state       = require('./state');
 var keyboard    = require('./keyboard');
 var bar         = require('./bar');
@@ -30,27 +29,17 @@ module.exports = function(socket) {
         state.switchFocus();
     });
 
-    keyboard.on(';,enter,tab,",\',backspace,del', function() {
-        history.past.push($('[id="file-' + state.openFile.path + '"]').text());
-    });
-
     keyboard.on('ctrl + z', function() {
-        if (history.past.length) {
-            history.future.push($('[id="file-' + state.openFile.path + '"]').text());
-            $('[id="file-' + state.openFile.path + '"]').text(history.past.pop());
-        } else {
-            bar.alert("We reached the beginning of the history");
+        if (!document.execCommand("undo", "", null)) {
+            bar.alert("Nothing to undo");
         }
 
         return false;
     });
 
     keyboard.on('ctrl + shift + z', function() {
-        if (history.future.length) {
-            history.past.push($('[id="file-' + state.openFile.path + '"]').text());
-            $('[id="file-' + state.openFile.path + '"]').text(history.future.pop());
-        } else {
-            bar.alert("We reached the end of the history");
+        if (!document.execCommand("redo", "", null)) {
+            bar.alert("Nothing to redo");
         }
 
         return false;
