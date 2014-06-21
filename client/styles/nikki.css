@@ -12,6 +12,10 @@ pre[class*=language-]>code[data-language] {
     outline: none;
 }
 
+.glyphicon {
+    margin: 1em;
+}
+
 #bar {
     display: none;
     position: fixed;
@@ -47,8 +51,34 @@ pre[class*=language-]>code[data-language] {
     font-size: 1.3em;
 }
 
+::-webkit-scrollbar
+{
+    width: 12px;  /* for vertical scrollbars */
+    height: 0px; /* for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track
+{
+    background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb
+{
+    background: rgba(0, 0, 0, 0.5);
+}
+
 #fs ul {
     list-style-type: none;
+    padding: 0;
+}
+
+.scrollable {
+    overflow-y: auto;
+    height:85vh;
+}
+
+#fs ul li {;
+    padding-left: 2em;
 }
 
 #root {

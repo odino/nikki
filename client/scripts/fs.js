@@ -15,7 +15,7 @@ var buildTitle = function(path) {
     });
 
     $('#subject').html('').append(title);
-}
+};
 
 module.exports = function(socket) {
     socket.on('fs.root', function (fs) {
@@ -27,6 +27,15 @@ module.exports = function(socket) {
         _.each(fs.resources, function(resource, index){
             var res = $('<li>')
             res.addClass(resource.type);
+
+            var icon = $('<span>')
+
+            if (resource.type === 'directory') {
+                icon.addClass("glyphicon glyphicon-book")
+            } else {
+                icon.addClass("glyphicon glyphicon-list-alt")
+            }
+
             res.addClass('resource');
 
             if (index === 0) {
@@ -44,7 +53,8 @@ module.exports = function(socket) {
                 socket.emit('resource.open', resource)
             });
 
-            filesystem.append(res)
+            filesystem.append(res);
+            res.prepend(icon);
         })
 
         $('[id="' + fs.root.path + '"]').addClass('active');
