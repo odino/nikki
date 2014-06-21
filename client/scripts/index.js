@@ -6,7 +6,7 @@ require('./keyboard-shortcuts')(socket);
 require('./ui');
 var bar = require('./bar');
 
-socket.on('disconnect', function(error) {
+socket.on('error', function(error) {
     bar.error("Aww, an awful error happened: " + error);
 });
 
