@@ -18,12 +18,13 @@ var buildTitle = function(path) {
 }
 
 module.exports = function(socket) {
-    socket.on('fs.root', function (resources) {
-        buildTitle(resources[0].parent)
-        var fs      = $('<ul>')
-        $('#fs').html('').append(fs);
+    socket.on('fs.root', function (fs) {
+        buildTitle(fs.root.path)
+        var filesystem = $('<ul>')
+        $('#fs').html('').append(filesystem);
+        history.pushState(null, null, fs.root.path);
 
-        _.each(resources, function(resource){
+        _.each(fs.resources, function(resource){
             var res = $('<li>')
             res.addClass(resource.type);
             res.addClass('resource');
@@ -38,9 +39,9 @@ module.exports = function(socket) {
                 socket.emit('resource.open', resource)
             });
 
-            fs.append(res)
+            filesystem.append(res)
         })
 
-        $('[id="' + resources[0].path + '"]').addClass('active');
+        $('[id="' + fs.root.path + '"]').addClass('active');
     });
 }

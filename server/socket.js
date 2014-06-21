@@ -52,9 +52,11 @@ module.exports = {
                 });
             });
 
-            socket.emit('fs.root', _.sortBy(resources, function(resource) {
+            var resources = _.sortBy(resources, function(resource) {
                 return resource.type + resource.name;
-            }));
+            });
+
+            socket.emit('fs.root', {root: resource, resources: resources});
         });
     }
 }
