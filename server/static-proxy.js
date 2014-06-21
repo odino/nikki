@@ -20,5 +20,5 @@ module.exports = function(path, req, res) {
                 res.writeHead(200, {'content-type': contentTypes[p.extname(parts[1])]});
                 res.end(data);
             });
-    }
+    };
 }

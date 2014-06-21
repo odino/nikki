@@ -1,5 +1,6 @@
 var app         = require('http').createServer(handler)
 var argv        = require('yargs').argv;
+var path        = require('path');
 var staticproxy = require('./static-proxy');
 var socket      = require('./socket');
 var serveIndex  = require('./serve-index');
@@ -10,9 +11,12 @@ app.listen(port);
 console.log('Nikki running on port ' + port)
 
 function handler (req, res) {
+    if (!path.extname(req.url)) {
+        serveIndex(req, res);
+    }
+    
     staticproxy('/bower_components', req, res);
     staticproxy('/client', req, res);
-    serveIndex(req, res);
 }
 
 /**
