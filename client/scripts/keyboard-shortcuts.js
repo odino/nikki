@@ -26,6 +26,10 @@ module.exports = function(socket) {
         Prism.highlightAll();
     });
 
+    keyboard.on('ctrl + x', function() {
+        state.switchFocus();
+    });
+
     keyboard.on(';,enter,tab,",\',backspace,del', function() {
         history.past.push($('[id="file-' + state.openFile.path + '"]').text());
     });
@@ -53,40 +57,46 @@ module.exports = function(socket) {
     });
 
     keyboard.on('down', function() {
-        var resource = $('.resource.active');
-        var canGoDown = resource.next().hasClass('resource');
+        if (state.focus === 'fs') {
+            var resource = $('.resource.active');
+            var canGoDown = resource.next().hasClass('resource');
 
-        if (canGoDown) {
-            resource.removeClass('active');
-            resource.next().addClass('active');
-        } else {
-            bar.alert("Where ya goin?")
+            if (canGoDown) {
+                resource.removeClass('active');
+                resource.next().addClass('active');
+            } else {
+                bar.alert("Where ya goin?")
+            }
+
+            return false;
         }
-
-        return false;
     });
 
     keyboard.on('up', function() {
-        var resource = $('.resource.active');
-        var canGoDown = resource.prev().hasClass('resource');
+        if (state.focus === 'fs') {
+            var resource = $('.resource.active');
+            var canGoDown = resource.prev().hasClass('resource');
 
-        if (canGoDown) {
-            resource.removeClass('active');
-            resource.prev().addClass('active');
-        } else {
-            bar.alert("Where ya goin?")
+            if (canGoDown) {
+                resource.removeClass('active');
+                resource.prev().addClass('active');
+            } else {
+                bar.alert("Where ya goin?")
+            }
+
+            return false;
         }
-
-        return false;
     });
 
     keyboard.on('space', function() {
-        var resource = $('.resource.active');
+        if (state.focus === 'fs') {
+            var resource = $('.resource.active');
 
-        if (resource) {
-            socket.emit('resource.open', JSON.parse(resource.attr('data-resource')))
+            if (resource) {
+                socket.emit('resource.open', JSON.parse(resource.attr('data-resource')))
+            }
+
+            return false;
         }
-
-        return false;
     });
 };

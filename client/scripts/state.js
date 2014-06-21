@@ -10,11 +10,16 @@ var state   = {
     openFile: null,
     focus:    'fs',
     switchFocus: function() {
+        var focus = 'fs'
+
         if (this.focus === 'fs') {
-            this.focus = 'tab';
-        } else {
-            this.focus = 'fs';
+            focus = 'tab';
         }
+
+        events.dispatch('state.focus.change', this);
+        events.dispatch('state.focus.' + focus, this);
+
+        this.focus = focus;
     }
 }
 

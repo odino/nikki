@@ -1,5 +1,6 @@
 var events  = require('./events');
 var utils   = require('./utils');
+var state   = require('./state');
 
 var ui = {
     openFile: function(resource) {
@@ -11,10 +12,14 @@ var ui = {
         tab.html(code);
 
         $('#file').html(tab);
+        code.focus();
     }
 };
 
 events.on('resource.opened', function(resource){
+    $('.resource.open').removeClass('open');
+    $('.resource.active').addClass('open');
+    state.switchFocus();
     ui.openFile(resource);
     Prism.highlightAll();
 

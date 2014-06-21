@@ -64,6 +64,10 @@ pre[class*=language-]>code[data-language] {
     background-color: #cccccc;
 }
 
+.resource.open {
+    background-color: #eaf6e8;
+}
+
 * {
     font-family: Consolas, Monaco, 'Andale Mono', monospace;
 }
