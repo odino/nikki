@@ -4,6 +4,7 @@ var languageGuesserMap = {
     json: 'javascript',
     js:   'javascript',
     html: 'markup',
+    rb:   'ruby',
     php:  'php',
     sql:  'sql',
     py:   'python',
@@ -21,6 +22,6 @@ module.exports = {
             return languageGuesserMap[extension];
         }
 
-        return 'markup';
+        return 'vim';
     }
 }
