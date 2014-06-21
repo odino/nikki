@@ -16,6 +16,10 @@ module.exports = function(socket) {
             res.addClass('resource');
             res.attr('id', resource.path);
             res.text(resource.name);
+            res.hover(function(){
+                $('.resource.active').removeClass('active');
+                res.addClass('active');
+            });
             res.attr('data-resource', JSON.stringify(resource))
             res.click(function(){
                 socket.emit('resource.open', resource)
