@@ -33,6 +33,11 @@ once you start the IDE:
 nikki --port 80
 ```
 
+## Support
+
+Nikki should work on all modern browser but, to be sure,
+*just use chrome man* :)
+
 ## Development
 
 You can contribute to nikki by simply forking this repo and
