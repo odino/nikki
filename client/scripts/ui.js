@@ -19,6 +19,8 @@ var ui = {
 events.on('resource.opened', function(resource){
     $('.resource.open').removeClass('open');
     $('.resource.active').addClass('open');
+    $('#subject span').remove();
+    $('#subject h2').html($('#subject h2').html() + '<span class="highlight">/' + resource.name + '</span>');
     state.switchFocus();
     ui.openFile(resource);
     Prism.highlightAll();

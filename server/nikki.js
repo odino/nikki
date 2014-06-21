@@ -14,7 +14,7 @@ function handler (req, res) {
     if (!path.extname(req.url)) {
         serveIndex(req, res);
     }
-    
+
     staticproxy('/bower_components', req, res);
     staticproxy('/client', req, res);
 }

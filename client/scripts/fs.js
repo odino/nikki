@@ -1,13 +1,26 @@
 var _           = require('lodash');
 var keyboard    = require('./keyboard');
 
+var buildTitle = function(path) {
+    var title       = $('<h2>')
+    var segments    = [];
+
+    _.each(path.split('/').splice(1), function(directory){
+        var segment = $('<a>');
+        segment.text('/' + directory);
+        segments.push(directory);
+        segment.attr('href', '/' + segments.join('/'));
+
+        title.append(segment);
+    });
+
+    $('#subject').append(title);
+}
+
 module.exports = function(socket) {
     socket.on('fs.root', function (resources) {
+        buildTitle(window.location.pathname)
         var fs      = $('<ul>')
-        var title   = $('<h2>')
-        title.text(window.location.pathname)
-
-        $('#subject').append(title);
         $('#fs').append(fs);
 
         _.each(resources, function(resource){

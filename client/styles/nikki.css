@@ -56,6 +56,11 @@ pre[class*=language-]>code[data-language] {
     margin-bottom: 2em;
 }
 
+#subject .highlight {
+    color: #cc0033;
+    margin-left: 0.3em;
+}
+
 .resource {
     padding: 10px;
 }
