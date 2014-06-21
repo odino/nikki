@@ -20,7 +20,8 @@ if (argv.help) {
     console.log();
     console.log("To start the IDE, simply run the `nikki` command.");
     console.log();
-    console.log('Proudly crafted by ' + config.author + ' and released under the ' + config.license + ' license');
+    console.log('Proudly crafted by ' + config.author.name + ' and released under the ' + config.license + ' license');
+    console.log('Feel free to reach out at ' + config.author.email);
 
     return;
 }

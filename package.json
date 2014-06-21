@@ -20,7 +20,10 @@
     "editor",
     "swag"
   ],
-  "author": "odino <alessandro.nadalin@gmail.com>",
+  "author": {
+    "name": "odino",
+    "email": "alessandro.nadalin@gmail.com"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/odino/nikki/issues"
