@@ -36,6 +36,13 @@ pre[class*=language-]>code[data-language] {
     font-size: 1.2em;
 }
 
+.message-error {
+    background-color: #fde4e1;
+    border: 1px solid #c7b8ad;
+    color: #781c0e;
+    font-size: 1.2em;
+}
+
 #fs {
     font-size: 1.3em;
 }

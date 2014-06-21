@@ -15,5 +15,8 @@ module.exports = {
     },
     alert: function(message) {
         flash(message, 'alert');
+    },
+    error: function(message) {
+        flash(message, 'error');
     }
 };
