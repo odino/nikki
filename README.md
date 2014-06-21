@@ -63,6 +63,9 @@ that this thing doesn't work on windows -- maybe if it
 gets some love we'll add support as it's a matter of
 just replacing some strings.
 
+Of course, calling this thing an "IDE" is a bit - well, a lot -
+pretentious. On purpose ;-)
+
 ## Development
 
 You can contribute to nikki by simply forking this repo and
