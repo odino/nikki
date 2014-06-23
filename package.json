@@ -1,7 +1,7 @@
 {
   "name": "nikki",
   "version": "0.6.1",
-  "description": "A web based IDE written in NodeJS. For Real.",
+  "description": "A browser-based IDE written in NodeJS. For Real.",
   "main": "server/nikki.js",
   "scripts": {
     "test": "mocha",
