@@ -84,6 +84,8 @@ gulp develop
 
 Among the things I wanna add in the next weeks:
 
+* replace `ctrl + x` as a shortcut to switch states (conflicts with cut and paste, me idiot!)
+* load preferences from a global `.nikki.yml` (or in the project's directory)
 * search for files in the current dir
 * search for files, recursively, from the current dir
 * some refactoring (as it's a WE project)
