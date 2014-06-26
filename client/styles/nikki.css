@@ -47,6 +47,17 @@ pre[class*=language-]>code[data-language] {
     font-size: 1.2em;
 }
 
+.message-search {
+    background-color: #545454;
+    border: 1px solid #211d1b;
+    color: #d5d4d3;
+    font-size: 1.2em;
+}
+
+#bar:empty:before{
+    content:attr(data-ph)
+}
+
 #fs {
     font-size: 1.3em;
 }

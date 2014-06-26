@@ -7,10 +7,11 @@
 var state       = require('./state');
 var keyboard    = require('./keyboard');
 var bar         = require('./bar');
+var search      = require('./search');
 
 module.exports = function(socket) {
     keyboard.on('tab', function() {
-        document.execCommand('insertHTML', false, "&#9;");
+        document.execCommand('insertHTML', false, "    ");//"&#9;");
         return false;
     });
 
@@ -26,7 +27,13 @@ module.exports = function(socket) {
     });
 
     keyboard.on('ctrl + x', function() {
-        state.switchFocus();
+        var focus = 'tab';
+
+        if (state.focus === 'tab') {
+            focus = 'fs';
+        }
+
+        state.switchFocus(focus);
     });
 
     keyboard.on('ctrl + z', function() {
@@ -41,6 +48,12 @@ module.exports = function(socket) {
         if (!document.execCommand("redo", "", null)) {
             bar.alert("Nothing to redo");
         }
+
+        return false;
+    });
+
+    keyboard.on('ctrl + shift + f', function() {
+        search.toggle();
 
         return false;
     });

@@ -9,13 +9,7 @@ var events  = require('./events');
 var state   = {
     openFile: null,
     focus:    'fs',
-    switchFocus: function() {
-        var focus = 'fs'
-
-        if (this.focus === 'fs') {
-            focus = 'tab';
-        }
-
+    switchFocus: function(focus) {
         events.dispatch('state.focus.change', this);
         events.dispatch('state.focus.' + focus, this);
 
