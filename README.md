@@ -85,6 +85,8 @@ gulp develop
 Among the things I wanna add in the next weeks:
 
 * replace `ctrl + x` as a shortcut to switch states (conflicts with cut and paste, me idiot!)
+* `fn +  up` and `fn + down` shortcuts
+* open browser on start
 * load preferences from a global `.nikki.yml` (or in the project's directory)
 * search for files in the current dir
 * search for files, recursively, from the current dir
