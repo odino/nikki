@@ -4,17 +4,24 @@
  *
  * @type {exports}
  */
-var state       = require('./state');
-var keyboard    = require('./keyboard');
-var bar         = require('./bar');
-var search      = require('./search');
+var state           = require('./state');
+var keyboard        = require('./keyboard');
+var bar             = require('./bar');
+var search          = require('./search');
+var codeHighlighter = require('./code-highlighter');
 
 module.exports = function(socket) {
+    /**
+     * Tab
+     */
     keyboard.on('tab', function() {
         document.execCommand('insertHTML', false, "    ");//"&#9;");
         return false;
     });
 
+    /**
+     * Save file
+     */
     keyboard.on('ctrl + s', function() {
         bar.alert('Saving...');
         state.openFile.data = $('[id="file-' + state.openFile.path + '"]').text();
@@ -22,10 +29,16 @@ module.exports = function(socket) {
         return false;
     });
 
+    /**
+     * Highlight code
+     */
     keyboard.on('ctrl + q', function() {
-        Prism.highlightAll();
+        codeHighlighter.run();
     });
 
+    /**
+     * Switch focus
+     */
     keyboard.on('ctrl + x', function() {
         var focus = 'tab';
 
@@ -36,6 +49,9 @@ module.exports = function(socket) {
         state.switchFocus(focus);
     });
 
+    /**
+     * Undo
+     */
     keyboard.on('ctrl + z', function() {
         if (!document.execCommand("undo", "", null)) {
             bar.alert("Nothing to undo");
@@ -44,6 +60,9 @@ module.exports = function(socket) {
         return false;
     });
 
+    /**
+     * Redo
+     */
     keyboard.on('ctrl + shift + z', function() {
         if (!document.execCommand("redo", "", null)) {
             bar.alert("Nothing to redo");
@@ -52,12 +71,27 @@ module.exports = function(socket) {
         return false;
     });
 
+    /**
+     * Local search
+     */
     keyboard.on('ctrl + shift + f', function() {
         search.toggle();
 
         return false;
     });
 
+    /**
+     * Global search
+     */
+    keyboard.on('ctrl + f', function() {
+        search.toggle(true);
+
+        return false;
+    });
+
+    /**
+     * Down arrow
+     */
     keyboard.on('down', function() {
         if (state.focus === 'fs') {
             var resource = $('.resource.active');
@@ -74,6 +108,9 @@ module.exports = function(socket) {
         }
     });
 
+    /**
+     * Up arrow
+     */
     keyboard.on('up', function() {
         if (state.focus === 'fs') {
             var resource = $('.resource.active');
@@ -90,6 +127,9 @@ module.exports = function(socket) {
         }
     });
 
+    /**
+     * Open files / directories
+     */
     keyboard.on('space', function() {
         if (state.focus === 'fs') {
             var resource = $('.resource.active');

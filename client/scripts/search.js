@@ -18,11 +18,11 @@ var search = {
             var regex = search.getSearchRegex();
 
             resources().filter(function(){
-                return !this.id.match(regex);
+                return !$(this).text().match(regex);
             }).hide();
 
             resources().filter(function(){
-                return this.id.match(regex);
+                return $(this).text().match(regex);
             }).show();
         } else {
             resources().show();
@@ -31,11 +31,13 @@ var search = {
     /**
      * Toggles the search box.
      */
-    toggle: function() {
+    toggle: function(global) {
+        global = global || false;
+
         if (search.isOpen()) {
             search.hide();
         } else {
-            search.show();
+            search.show(global);
         }
     },
     /**
@@ -46,8 +48,11 @@ var search = {
     getSearchRegex: function() {
         var regexString = '';
 
-        bar().text().split(' ').forEach(function(word){
-            regexString += "(?=.*" + word.trim() + ")"
+        bar().text().split('').forEach(function(letter){
+            letter = letter.trim();
+            if (letter) {
+                regexString += "(.*)(" + letter + ")"
+            }
         });
 
         return new RegExp(regexString, "i");
@@ -65,14 +70,18 @@ var search = {
     /**
      * Shows the search box.
      */
-    show: function() {
+    show: function(global) {
+        bar().empty();
         state.switchFocus('bar');
 
         bar().finish();
         bar().removeClass();
         bar().addClass('message-search');
         bar().attr('contenteditable', 'true');
-        bar().attr('data-ph', 'Search files...');
+
+        var placeHolder = global ? 'Search files...' : 'Search files in the current directory...'
+
+        bar().attr('data-ph', placeHolder);
         bar().show();
         bar().focus();
 
