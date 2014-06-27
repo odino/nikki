@@ -49,7 +49,7 @@ while using it:
 * press `space` to open a file / directory
 * `ctrl + s` will save the current open file
 * `ctrl + shift + f` will search files by name in the current directory
-* press `ctrl + x` to switch the focus between the filesystem structure
+* press `ctrl + shift + x` to switch the focus between the filesystem structure
 and the editor tab (this is handy when you open a file, save it and then
 wanna open another file without using the mouse)
 * use `ctrl + z` to undo
@@ -86,7 +86,6 @@ gulp develop
 Among the things I wanna add in the next weeks:
 
 * search for files, recursively, from the current dir
-* replace `ctrl + x` as a shortcut to switch states (conflicts with cut and paste, me idiot!)
 * `fn +  up` and `fn + down` shortcuts
 * load preferences from a global `.nikki.yml` (or in the project's directory)
 * multiple editor tabs

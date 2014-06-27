@@ -39,7 +39,7 @@ module.exports = function(socket) {
     /**
      * Switch focus
      */
-    keyboard.on('ctrl + x', function() {
+    keyboard.on('ctrl + shift + x', function() {
         var focus = 'tab';
 
         if (state.focus === 'tab') {
