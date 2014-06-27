@@ -1,7 +1,7 @@
 var events          = require('./events');
 var utils           = require('./utils');
 var state           = require('./state');
-var codeHighlighter = require('./code-highlighter');
+var editor          = require('./editor');
 
 /**
  * UI object.
@@ -15,15 +15,12 @@ var ui = {
      * @param resource
      */
     openFile: function(resource) {
-        var tab     = $('<pre>');
-        var code    = $('<code class="language-' + utils.guessLanguage(resource.name) + '" contenteditable>');
-
-        code.attr('id', 'file-' + resource.path);
-        code.text(resource.data);
-        tab.html(code);
-
-        $('#file').html(tab);
-        code.focus();
+        $('#file').attr('filename', resource.path);
+        editor.setSession(ace.createEditSession(resource.data));
+        editor.getSession().setMode("ace/mode/" + utils.guessLanguage(resource.name));
+        editor.setFormatting();
+        editor.focus();
+        editor.gotoLine(0)
     },
     /**
      * Returns all the resources.
@@ -50,17 +47,6 @@ events.on('resource.opened', function(resource){
     $('#subject h2').html($('#subject h2').html() + '<span class="highlight">/' + resource.name + '</span>');
     state.switchFocus('tab');
     ui.openFile(resource);
-    codeHighlighter.run();
-
-    /**
-     * Fix for entering newlines.
-     */
-    $('[contenteditable]').keypress(function(e) {
-        if (e.keyCode === 13) {
-            document.execCommand('insertHTML', false, "\n");
-            return false;
-        }
-    });
 });
 
 module.exports = ui;

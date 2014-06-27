@@ -10,13 +10,12 @@ gulp.task('browserify', function() {
         .pipe(browserify({
             insertGlobals : true
         }))
-        .pipe(gulp.dest('./client'))
+        .pipe(gulp.dest('./client'));
 });
 
 gulp.task('server', function(cb) {
     plugins.nodemon({
         script: 'server/index.js',
-        watch: [],
         ext: 'js',
         env: {'NODE_ENV': 'development'}
     });

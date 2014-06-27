@@ -12,6 +12,7 @@
     "lodash": "~2.4.1",
     "prismjs": "*",
     "prism-langs": "git@github.com:samflores/prism-langs.git",
-    "bootstrap": "~3.1.1"
+    "bootstrap": "~3.1.1",
+    "ace-builds": "~1.1.3"
   }
 }

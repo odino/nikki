@@ -41,6 +41,9 @@
     "run-sequence": "^0.3.6",
     "gulp-nodemon": "^1.0.4",
     "browserify": "^4.1.11",
-    "bower": "^1.3.5"
+    "bower": "^1.3.5",
+    "js-yaml": "^3.0.2",
+    "reconfig": "^1.1.2",
+    "prettyjson": "^1.0.0"
   }
 }

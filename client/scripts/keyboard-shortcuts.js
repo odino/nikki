@@ -8,32 +8,18 @@ var state           = require('./state');
 var keyboard        = require('./keyboard');
 var bar             = require('./bar');
 var search          = require('./search');
-var codeHighlighter = require('./code-highlighter');
+var editor          = require('./editor');
 
 module.exports = function(socket) {
-    /**
-     * Tab
-     */
-    keyboard.on('tab', function() {
-        document.execCommand('insertHTML', false, "    ");//"&#9;");
-        return false;
-    });
-
     /**
      * Save file
      */
     keyboard.on('ctrl + s', function() {
         bar.alert('Saving...');
-        state.openFile.data = $('[id="file-' + state.openFile.path + '"]').text();
+        state.openFile.data = editor.getValue();
+
         socket.emit('resource.save', state.openFile);
         return false;
-    });
-
-    /**
-     * Highlight code
-     */
-    keyboard.on('ctrl + q', function() {
-        codeHighlighter.run();
     });
 
     /**
@@ -47,28 +33,6 @@ module.exports = function(socket) {
         }
 
         state.switchFocus(focus);
-    });
-
-    /**
-     * Undo
-     */
-    keyboard.on('ctrl + z', function() {
-        if (!document.execCommand("undo", "", null)) {
-            bar.alert("Nothing to undo");
-        }
-
-        return false;
-    });
-
-    /**
-     * Redo
-     */
-    keyboard.on('ctrl + shift + z', function() {
-        if (!document.execCommand("redo", "", null)) {
-            bar.alert("Nothing to redo");
-        }
-
-        return false;
     });
 
     /**
@@ -124,60 +88,6 @@ module.exports = function(socket) {
             }
 
             return false;
-        }
-    });
-
-    /**
-     * Down selection
-     */
-    keyboard.on('ctrl + shift + down', function() {
-        if (state.focus === 'tab') {
-            window.getSelection().modify("extend", "forward", "documentboundary");
-        }
-    });
-
-    /**
-     * Move to the end of a file
-     */
-    keyboard.on('ctrl + down', function() {
-        if (state.focus === 'tab') {
-            var code = $('code')[0];
-            range = document.createRange();
-            range.selectNodeContents(code);
-            range.collapse(false);
-            selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-            $('#file')[0].scrollTop = $('#file')[0].scrollHeight;
-        }
-
-        return false;
-    });
-
-    /**
-     * Move to the beginning of a file
-     */
-    keyboard.on('ctrl + up', function() {
-        if (state.focus === 'tab') {
-            var code = $('code')[0];
-            range = document.createRange();
-            range.selectNodeContents(code);
-            range.collapse(true);
-            selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-            $('#file')[0].scrollTop = 0;
-        }
-
-        return false;
-    });
-
-    /**
-     * Up selection
-     */
-    keyboard.on('ctrl + shift + up', function() {
-        if (state.focus === 'tab') {
-            window.getSelection().modify("extend", "backward", "documentboundary");
         }
     });
 

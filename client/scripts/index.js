@@ -1,9 +1,13 @@
 var socket = io('http://localhost:' + window.location.port);
+var config = require('./config');
+
+config.bind(socket);
 
 require('./fs')(socket);
 require('./resource')(socket);
 require('./keyboard-shortcuts')(socket);
 require('./ui');
+
 var bar = require('./bar');
 
 socket.on('error', function(error) {

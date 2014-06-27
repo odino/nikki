@@ -5,6 +5,7 @@
  */
 var fs          = require('fs');
 var _           = require('lodash');
+var config      = require('./config');
 
 module.exports = {
     startTheFun: function(app) {
@@ -12,6 +13,8 @@ module.exports = {
         var io   = require('socket.io')(app);
 
         io.on('connection', function (socket) {
+            socket.emit('config', config.get());
+
             socket.on('boot', function (resource) {
                 self.openDir(resource, socket)
             });

@@ -1,17 +1,3 @@
-.token.lf:before, .token.tab:not(:empty):before {
-    content: '';
-}
-
-pre[class*=language-]>code[data-language] {
-    overflow: hidden;
-    overflow-y: scroll;
-    max-height: 100%;
-}
-
-[contenteditable]:focus {
-    outline: none;
-}
-
 .glyphicon {
     margin: 1em;
 }
@@ -123,4 +109,22 @@ pre[class*=language-]>code[data-language] {
 
 * {
     font-family: Consolas, Monaco, 'Andale Mono', monospace;
+}
+
+#file {
+    right: 0;
+    width: 65%;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.ace_gutter {
+    left: 0px;
+    padding-top:  10px;
+}
+
+.ace_content {
+    padding-top:  10px;
+    padding-left: 10px;
 }

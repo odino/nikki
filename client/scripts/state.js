@@ -14,6 +14,7 @@ var state   = {
         events.dispatch('state.focus.' + focus, this);
 
         this.focus = focus;
+        $(document.activeElement).blur();
     }
 }
 
