@@ -26,4 +26,4 @@ if (argv.help) {
     return;
 }
 
-require('./../server/nikki')
+require('./../server/index')

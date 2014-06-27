@@ -2,13 +2,13 @@
   "name": "nikki",
   "version": "0.9.0",
   "description": "A browser-based IDE written in NodeJS. For Real.",
-  "main": "server/nikki.js",
+  "main": "server/index.js",
   "scripts": {
     "test": "mocha",
     "postinstall": "./node_modules/bower/bin/bower install && ./node_modules/browserify/bin/cmd.js client/scripts/index.js > client/index.js"
   },
   "bin": {
-    "nikki": "bin/nikki"
+    "nikki": "bin/nikki.js"
   },
   "repository": {
     "type": "git",
