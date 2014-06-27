@@ -1,17 +1,21 @@
 var path    = require('path');
 
 var languageGuesserMap = {
-    json: 'javascript',
-    js:   'javascript',
-    html: 'markup',
-    rb:   'ruby',
-    php:  'php',
-    sql:  'sql',
-    py:   'python',
-    java: 'java',
-    css:  'css',
-    scss: 'css',
-    c:    'c'
+    json:   'json',
+    md:     'markdown',
+    yml:    'yaml',
+    js:     'javascript',
+    coffee: 'coffescript',
+    html:   'html',
+    rb:     'ruby',
+    php:    'php',
+    sql:    'sql',
+    py:     'python',
+    java:   'java',
+    css:    'css',
+    scss:   'scss',
+    c:      'c',
+    xml:    'xml'
 }
 
 module.exports = {
@@ -22,6 +26,6 @@ module.exports = {
             return languageGuesserMap[extension];
         }
 
-        return 'vim';
+        return 'text';
     }
 }

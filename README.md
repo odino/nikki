@@ -93,7 +93,6 @@ gulp
 
 Among the things I wanna add in the next weeks:
 
-* add syntax highlighting for a whole lot of languages
 * search for files, recursively, from the current dir
 * multiple editor tabs
 * open browser on start
