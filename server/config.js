@@ -14,7 +14,7 @@ var path        = require('path');
 /**
  * Load the default configuration
  */
-var configuration   = yaml.safeLoad(fs.readFileSync(path.join(process.cwd(),  '.nikki.yml'), 'utf8'));
+var configuration   = yaml.safeLoad(fs.readFileSync(path.join(__dirname, '..',  '.nikki.yml'), 'utf8'));
 var config          = new reconfig(configuration);
 
 module.exports = config
