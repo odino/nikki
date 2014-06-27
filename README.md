@@ -54,6 +54,9 @@ editor:
   theme: chaos
 ```
 
+For a full list of available configurations, have
+a look [here](https://github.com/odino/nikki/blob/master/.nikki.yml).
+
 ## Shortcuts
 
 Nikki is thought with shortcuts in mind and focused on letting
