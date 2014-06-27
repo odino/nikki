@@ -6,15 +6,24 @@
  *
  * @type {*}
  */
-var fs          = require('fs');
-var yaml        = require('js-yaml');
-var reconfig    = require('reconfig');
-var path        = require('path');
+var _             = require('lodash');
+var fs            = require('fs');
+var yaml          = require('js-yaml');
+var reconfig      = require('reconfig');
+var path          = require('path');
+var utils         = require('./utils');
+var configuration = {
+    paths:  [
+        path.join(__dirname, '..',  '.nikki.yml'),
+        path.join(utils.getUserHomeDir(),  '.nikki.yml'),
+        path.join(process.cwd(),  '.nikki.yml')
+    ]
+};
 
-/**
- * Load the default configuration
- */
-var configuration   = yaml.safeLoad(fs.readFileSync(path.join(__dirname, '..',  '.nikki.yml'), 'utf8'));
-var config          = new reconfig(configuration);
+_.forEach(configuration.paths, function(path){
+  try {
+    configuration = _.merge(configuration, yaml.safeLoad(fs.readFileSync(path, 'utf8')));
+  } catch (err) {};
+});
 
-module.exports = config
+module.exports = new reconfig(configuration);

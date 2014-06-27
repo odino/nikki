@@ -5,6 +5,6 @@
  */
 module.exports = {
     getUserHomeDir: function() {
-        return process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
+        return process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE;
     }
 }

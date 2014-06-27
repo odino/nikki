@@ -37,6 +37,23 @@ nikki --port
 
 If you feel lost, simply run a `nikki --help` and get some comfort.
 
+## Configuration
+
+By default, nikki comes with some configs stored
+in the [.nikki.yml](https://github.com/odino/nikki/blob/master/.nikki.yml)
+file of the module itself; you can setup custom
+configs by storing a `.nikki.yml` file in your home
+directory, or in the directory from which you are starting
+nikki.
+
+For example, to change the editor theme, you can
+create the `.nikki.yml` configuration file in `~`:
+
+```
+editor:
+  theme: chaos
+```
+
 ## Shortcuts
 
 Nikki is thought with shortcuts in mind and focused on letting
@@ -59,15 +76,10 @@ the [ACE editor](http://ace.c9.io/#nav=about).
 
 ## Support
 
-Nikki should work on all modern browser but, to be sure,
-*just use chrome man* :)
+Nikki should work on all modern browser, it's actually
+quite good on the latest versions of Chrome and Firefox.
 
-Jokes apart, bear in mind that this started as an idea a very long
-time ago but got concrete in a weekend, so it's  still experimental:
-try playing with it, report bugs if you find any and I'll be very
-happy to add stuff on nikki.
-
-By the way, I'm [quite sure](https://github.com/odino/nikki/blob/40103e48439f763697f3227289d1a73735ea815a/server/socket.js#L45)
+I'm [quite sure](https://github.com/odino/nikki/blob/40103e48439f763697f3227289d1a73735ea815a/server/socket.js#L45)
 that this thing doesn't work on windows -- maybe if it
 gets some love we'll add support as it's a matter of
 just replacing some strings.
@@ -93,8 +105,7 @@ gulp
 
 Among the things I wanna add in the next weeks:
 
-* load `.nikky.yml` file from the user root
-* load `.nikky.yml` file from the current directory
+* load .nikki.yml from a project's root
 * search for files, recursively, from the current dir
 * multiple editor tabs
 * open browser on start
