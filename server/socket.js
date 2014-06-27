@@ -5,6 +5,7 @@
  */
 var fs          = require('fs');
 var _           = require('lodash');
+var p           = require('path');
 var config      = require('./config');
 
 module.exports = {
@@ -45,7 +46,7 @@ module.exports = {
             resources = [];
 
             _.each(files, function(file){
-                var path = resource.path + '/' + file;
+                var path = p.join(resource.path, file);
 
                 resources.push({
                     type:   fs.lstatSync(path).isDirectory() ? 'directory' : 'file',

@@ -82,14 +82,6 @@ the [ACE editor](http://ace.c9.io/#nav=about).
 Nikki should work on all modern browser, it's actually
 quite good on the latest versions of Chrome and Firefox.
 
-I'm [quite sure](https://github.com/odino/nikki/blob/40103e48439f763697f3227289d1a73735ea815a/server/socket.js#L45)
-that this thing doesn't work on windows -- maybe if it
-gets some love we'll add support as it's a matter of
-just replacing some strings.
-
-Of course, calling this thing an "IDE" is a bit - well, a lot -
-pretentious. On purpose ;-)
-
 ## Development
 
 You can contribute to nikki by simply forking this repo and
@@ -114,7 +106,6 @@ Among the things I wanna add in the next weeks:
 * open browser on start
 * some refactoring (as it's a WE project)
 * [tests](http://liamkaufman.com/blog/2012/01/28/testing-socketio-with-mocha-should-and-socketio-client/)
-* windows support (it really hurts to write this one)
 
 By the way, the layout sucks, **big time**: never been a genious
 with HTML and CSS so if you guys wanna come up with something I'd
@@ -128,3 +119,6 @@ For the ones who care, nikki is released under the MIT license.
 
 "Kinda", "Why not?" and "Let's just have fun" are all valid
 answers to this question.
+
+Of course, calling this thing an "IDE" is a bit - well, a lot -
+pretentious. On purpose ;-)

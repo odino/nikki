@@ -15,7 +15,7 @@ module.exports = function(path, req, res) {
     var parts = req.url.split(path);
 
     if (parts[0] == '') {
-        fs.readFile(__dirname + '/../' + path + '/' + parts[1],
+        fs.readFile(p.join(__dirname, '..', path, parts[1]),
             function (err, data) {
                 res.writeHead(200, {'content-type': contentTypes[p.extname(parts[1])]});
                 res.end(data);
