@@ -54,6 +54,10 @@ and the editor tab (this is handy when you open a file, save it and then
 wanna open another file without using the mouse)
 * use `ctrl + z` to undo
 * use `ctrl + shift + z` to redo
+* use `ctrl + up` to move to the beginning of a file
+* use `ctrl + down` to move to the end of a file
+* use `ctrl + shift + up` to select the text from the cursor to the beginning of the file
+* use `ctrl + shift + down` to select the text from the cursor to the end of the file
 
 ## Support
 
@@ -85,7 +89,6 @@ gulp develop
 
 Among the things I wanna add in the next weeks:
 
-* `fn +  up` and `fn + down` shortcuts
 * load preferences from a global `.nikki.yml` (or in the project's directory)
 * search for files, recursively, from the current dir
 * multiple editor tabs

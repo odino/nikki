@@ -128,6 +128,60 @@ module.exports = function(socket) {
     });
 
     /**
+     * Down selection
+     */
+    keyboard.on('ctrl + shift + down', function() {
+        if (state.focus === 'tab') {
+            window.getSelection().modify("extend", "forward", "documentboundary");
+        }
+    });
+
+    /**
+     * Move to the end of a file
+     */
+    keyboard.on('ctrl + down', function() {
+        if (state.focus === 'tab') {
+            var code = $('code')[0];
+            range = document.createRange();
+            range.selectNodeContents(code);
+            range.collapse(false);
+            selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            $('#file')[0].scrollTop = $('#file')[0].scrollHeight;
+        }
+
+        return false;
+    });
+
+    /**
+     * Move to the beginning of a file
+     */
+    keyboard.on('ctrl + up', function() {
+        if (state.focus === 'tab') {
+            var code = $('code')[0];
+            range = document.createRange();
+            range.selectNodeContents(code);
+            range.collapse(true);
+            selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            $('#file')[0].scrollTop = 0;
+        }
+
+        return false;
+    });
+
+    /**
+     * Up selection
+     */
+    keyboard.on('ctrl + shift + up', function() {
+        if (state.focus === 'tab') {
+            window.getSelection().modify("extend", "backward", "documentboundary");
+        }
+    });
+
+    /**
      * Open files / directories
      */
     keyboard.on('space', function() {
