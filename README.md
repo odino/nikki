@@ -93,6 +93,8 @@ gulp
 
 Among the things I wanna add in the next weeks:
 
+* load `.nikky.yml` file from the user root
+* load `.nikky.yml` file from the current directory
 * search for files, recursively, from the current dir
 * multiple editor tabs
 * open browser on start
