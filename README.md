@@ -85,9 +85,9 @@ gulp develop
 
 Among the things I wanna add in the next weeks:
 
-* search for files, recursively, from the current dir
 * `fn +  up` and `fn + down` shortcuts
 * load preferences from a global `.nikki.yml` (or in the project's directory)
+* search for files, recursively, from the current dir
 * multiple editor tabs
 * open browser on start
 * some refactoring (as it's a WE project)
