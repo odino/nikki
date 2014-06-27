@@ -119,12 +119,6 @@
     border-radius: 5px;
 }
 
-.ace_gutter {
-    left: 0px;
-    padding-top:  10px;
-}
-
-.ace_content {
-    padding-top:  10px;
-    padding-left: 10px;
+.ace_gutter, .ace_scroller {
+    margin-top: 10px;
 }

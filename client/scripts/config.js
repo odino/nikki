@@ -1,15 +1,13 @@
 var reconfig = require('reconfig');
-var editor   = require('./editor');
+var socket   = require('./socket');
 var events   = require('./events');
 
-var config = new reconfig();
+var config = new reconfig({});
 
-config.bind = function(socket) {
-    socket.on('config', function(data){
-        config = new reconfig(data);
+socket.on('config', function(data){
+    config.config = data;
 
-        events.dispatch('config', config);
-    });
-};
+    events.dispatch('config.loaded');
+});
 
 module.exports = config;

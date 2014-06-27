@@ -1,2 +1,4 @@
 editor:
-  indentation: "2 spaces"
+  theme:       cobalt
+  indentation: 2 spaces
+  font-size:   13px

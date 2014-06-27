@@ -1,17 +1,26 @@
-var socket = io('http://localhost:' + window.location.port);
-var config = require('./config');
+/**
+ * Setup the sockets.
+ */
+var socket = require('./socket');
+var events = require('./events');
 
-config.bind(socket);
+/**
+ * Boot the config.
+ */
+require('./config');
 
-require('./fs')(socket);
-require('./resource')(socket);
-require('./keyboard-shortcuts')(socket);
-require('./ui');
+/**
+ * Once the config is loaded, boot the app.
+ */
+events.on('config.loaded', function(){
+    require('./fs');
+    require('./resource');
+    require('./keyboard-shortcuts');
+    require('./ui');
+    require('./error-handler');
 
-var bar = require('./bar');
-
-socket.on('error', function(error) {
-    bar.error("Aww, an awful error happened: " + error);
+    /**
+     * FUN TIMES AHEAD!
+     */
+    socket.emit('boot', {path: window.location.pathname});
 });
-
-socket.emit('boot', {path: window.location.pathname});
