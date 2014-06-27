@@ -81,10 +81,16 @@ pretentious. On purpose ;-)
 
 You can contribute to nikki by simply forking this repo and
 running it locally; `cd` into nikki's root, run `npm install`
-and `bower install` and launch the app with:
+and `bower install` and launch the app with gulp:
 
 ```
-gulp develop
+git clone git@github.com:odino/nikki.git
+
+cd nikki
+
+npm install
+
+gulp
 ```
 
 Among the things I wanna add in the next weeks:

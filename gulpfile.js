@@ -28,7 +28,7 @@ gulp.task('watch', function () {
 });
 
 /**
- * Default task to run nikki in dev
+ * Start the fun
  */
 gulp.task('develop', function(cb) {
     runSequence(
@@ -37,4 +37,11 @@ gulp.task('develop', function(cb) {
         'watch',
         cb
     );
+});
+
+/**
+ * Default task to run nikki in dev
+ */
+gulp.task('default', function(cb) {
+    gulp.start('develop');
 });
