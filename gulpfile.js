@@ -15,7 +15,7 @@ gulp.task('browserify', function() {
 
 gulp.task('server', function(cb) {
     plugins.nodemon({
-        script: 'server/nikki.js',
+        script: 'server/index.js',
         watch: [],
         ext: 'js',
         env: {'NODE_ENV': 'development'}
