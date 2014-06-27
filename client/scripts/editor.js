@@ -4,6 +4,7 @@
 var _       = require('lodash');
 var config  = require('./config');
 var events  = require('./events');
+var utils   = require('./utils');
 
 /**
  * Get the indentation from the configuration.
@@ -44,4 +45,16 @@ events.on('state.focus.tab', function(state){
     editor.focus();
 });
 
-module.exports = editor;
+module.exports = {
+    getValue: function() {
+        return editor.getValue();
+    },
+    openFile: function(resource) {
+        console.log(utils.guessLanguage(resource.name))
+        editor.setSession(ace.createEditSession(resource.data));
+        editor.getSession().setMode("ace/mode/" + utils.guessLanguage(resource.name));
+        editor.setFormatting();
+        editor.focus();
+        editor.gotoLine(0)
+    }
+};

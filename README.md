@@ -93,9 +93,6 @@ gulp
 
 Among the things I wanna add in the next weeks:
 
-* load preferences from a global `.nikki.yml` (or in the project's directory)
-    * editor indentation
-    * editor theme
 * add syntax highlighting for a whole lot of languages
 * search for files, recursively, from the current dir
 * multiple editor tabs

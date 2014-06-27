@@ -1,5 +1,4 @@
 var events          = require('./events');
-var utils           = require('./utils');
 var state           = require('./state');
 var editor          = require('./editor');
 
@@ -16,11 +15,7 @@ var ui = {
      */
     openFile: function(resource) {
         $('#file').attr('filename', resource.path);
-        editor.setSession(ace.createEditSession(resource.data));
-        editor.getSession().setMode("ace/mode/" + utils.guessLanguage(resource.name));
-        editor.setFormatting();
-        editor.focus();
-        editor.gotoLine(0)
+        editor.openFile(resource)
     },
     /**
      * Returns all the resources.
