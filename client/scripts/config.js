@@ -4,6 +4,8 @@ var events   = require('./events');
 
 var config = new reconfig({});
 
+socket.emit('readyOn', window.location.pathname);
+
 socket.on('config', function(data){
     config.config = data;
 

@@ -14,28 +14,33 @@ module.exports = {
         var io   = require('socket.io')(app);
 
         io.on('connection', function (socket) {
-            socket.emit('config', config.get());
+            socket.on('readyOn', function(path){
+                config.config.paths.push(path);
+                config.reload();
 
-            socket.on('boot', function (resource) {
-                self.openDir(resource, socket)
-            });
+                socket.emit('config', config.get());
 
-            socket.on('resource.open', function(resource){
-                if (resource.type === 'directory') {
+                socket.on('boot', function (resource) {
                     self.openDir(resource, socket)
-                } else {
-                    fs.readFile(resource.path, 'utf-8', function(err, data){
-                        if (err) throw err;
-                        resource.data = data;
-                        socket.emit('resource.opened', resource);
-                    });
-                }
-            });
+                });
 
-            socket.on('resource.save', function(resource){
-                fs.writeFile(resource.path, resource.data, function(err) {
-                    if (err) throw err;
-                    socket.emit('resource.saved', resource);
+                socket.on('resource.open', function(resource){
+                    if (resource.type === 'directory') {
+                        self.openDir(resource, socket)
+                    } else {
+                        fs.readFile(resource.path, 'utf-8', function(err, data){
+                            if (err) throw err;
+                            resource.data = data;
+                            socket.emit('resource.opened', resource);
+                        });
+                    }
+                });
+
+                socket.on('resource.save', function(resource){
+                    fs.writeFile(resource.path, resource.data, function(err) {
+                        if (err) throw err;
+                        socket.emit('resource.saved', resource);
+                    });
                 });
             });
         });

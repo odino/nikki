@@ -57,6 +57,14 @@ editor:
 For a full list of available configurations, have
 a look [here](https://github.com/odino/nikki/blob/master/.nikki.yml).
 
+If you want to be more granular and specify
+per-project configurations, you can do it by
+storing another `.nikki.yml` in your project's
+folder (ie. `/home/user/projects/test-project/.nikki.yml`):
+once you open nikki at `localhost:9123/home/user/projects/test-project`
+you will see that you are now using custom configurations
+that will only be available on that project.
+
 ## Shortcuts
 
 Nikki is thought with shortcuts in mind and focused on letting
@@ -100,10 +108,9 @@ gulp
 
 Among the things I wanna add in the next weeks:
 
-* load .nikki.yml from a project's root
+* open browser on start
 * search for files, recursively, from the current dir
 * multiple editor tabs
-* open browser on start
 * some refactoring (as it's a WE project)
 * [tests](http://liamkaufman.com/blog/2012/01/28/testing-socketio-with-mocha-should-and-socketio-client/)
 
