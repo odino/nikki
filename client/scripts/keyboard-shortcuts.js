@@ -45,15 +45,6 @@ keyboard.on('ctrl + shift + f', function() {
 });
 
 /**
- * Global search
- */
-keyboard.on('ctrl + f', function() {
-    search.toggle(true);
-
-    return false;
-});
-
-/**
  * Down arrow
  */
 keyboard.on('down', function() {
