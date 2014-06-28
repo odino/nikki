@@ -22,10 +22,10 @@ start nikki from the command line:
 nikki
 ```
 
-This command will start nikki on port `9123`: now simply open
-your beloved browser at `localhost:9123`
-and you will see that nikki shows you a list of files in `/` (no jokes):
-to open a new project, simply specify it in the URL, for
+This command will open your browser at `http://localhost:9123/`,
+where the IDE is running.
+
+To open specific project, simply specify it in the URL, for
 example `http://localhost:9123/home/odino/my-project`.
 
 If you wish to start nikki on another port, simply specify it
@@ -34,6 +34,17 @@ once you start the IDE:
 ```
 nikki --port
 ```
+
+By default, nikki opens on the directory from which it was launched,
+which means that:
+
+```
+cd /tmp
+
+nikki
+```
+
+will open the browser at `http://localhost:9123/tmp`
 
 If you feel lost, simply run a `nikki --help` and get some comfort.
 
@@ -108,10 +119,8 @@ gulp
 
 Among the things I wanna add in the next weeks:
 
-* open browser on start
 * search for files, recursively, from the current dir
 * multiple editor tabs
-* some refactoring (as it's a WE project)
 * [tests](http://liamkaufman.com/blog/2012/01/28/testing-socketio-with-mocha-should-and-socketio-client/)
 
 By the way, the layout sucks, **big time**: never been a genious

@@ -17,7 +17,8 @@ gulp.task('server', function(cb) {
     plugins.nodemon({
         script: 'server/index.js',
         ext: 'js',
-        env: {'NODE_ENV': 'development'}
+        env: {'NODE_ENV': 'development'},
+        args: ['--no-open']
     });
     cb();
 });

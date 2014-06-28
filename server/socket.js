@@ -7,6 +7,11 @@ var fs          = require('fs');
 var _           = require('lodash');
 var p           = require('path');
 var config      = require('./config');
+var utils       = require('./utils');
+
+var sanitizePath = function(path) {
+    return path.replace('~', utils.getUserHomeDir()).replace('//', '/');
+}
 
 module.exports = {
     startTheFun: function(app) {
@@ -15,6 +20,8 @@ module.exports = {
 
         io.on('connection', function (socket) {
             socket.on('readyOn', function(path){
+                path = sanitizePath(path);
+
                 config.config.paths.push(path);
                 config.reload();
 
@@ -46,6 +53,8 @@ module.exports = {
         });
     },
     openDir: function(resource, socket) {
+        resource.path = sanitizePath(resource.path);
+
         fs.readdir(resource.path, function (err, files) {
             if (err) throw err;
             resources = [];

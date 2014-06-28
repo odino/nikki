@@ -1,4 +1,10 @@
+app:
+  host: 'localhost'
+  port: '9123'
+  open: 'true'
 editor:
-  theme:       cobalt
-  indentation: 2 spaces
-  font-size:   13px
+  theme:       'cobalt'     # see https://github.com/ajaxorg/ace/tree/master/lib/ace/theme
+  indentation: '2 spaces'   # spaces or tabs
+  font-size:   '13px'
+projects:
+  default: 'cwd'            # the project we should open by default: can be an absolute path (/var/www), a relative one (~/projects) or the directory from which you launch nikki (cwd)
