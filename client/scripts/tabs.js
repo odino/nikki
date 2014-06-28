@@ -14,7 +14,8 @@ var tabs    = {};
  */
 tabs.add = function(resource) {
     var tab = $('<li data-toggle="tooltip" data-placement="top" title="' + resource.path + '" class="active tab">');
-    tab.attr('path', resource.path);
+    tab.attr('resource-path', resource.path);
+    tab.attr('resource-name', resource.name);
     tab.tooltip();
 
     var a = $('<a>');
@@ -22,7 +23,7 @@ tabs.add = function(resource) {
     tab.html(a);
 
     tab.click(function(){
-        socket.emit('resource.open', resource)
+        socket.emit('resource.open', resource);
     });
 
     $('.tab').removeClass('active');
@@ -37,7 +38,7 @@ tabs.add = function(resource) {
  */
 tabs.select = function(resource) {
     $('.tab').removeClass('active');
-    $('.tab[path="' + resource.path + '"]').addClass('active');
+    $('.tab[resource-path="' + resource.path + '"]').addClass('active');
 };
 
 /**
@@ -48,12 +49,12 @@ tabs.select = function(resource) {
  */
 tabs.move = function(direction) {
     var activeTab   = $('.tab.active');
-    var element = activeTab[direction]('.tab[path]');
+    var element = activeTab[direction]('.tab[resource-path]');
 
     if (element.length) {
         activeTab.removeClass('active');
         element.addClass('active');
-        events.dispatch('resource.opened', {path: element.attr('path')});
+        events.dispatch('resource.opened', {path: element.attr('resource-path'), name: element.attr('resource-name')});
     };
 }
 
