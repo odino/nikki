@@ -1,25 +1,16 @@
 /**
  * Representation of the editor
  */
-var _       = require('lodash');
-var config  = require('./config');
-var events  = require('./events');
-var utils   = require('./utils');
+var _           = require('lodash');
+var config      = require('./config');
+var events      = require('./events');
+var utils       = require('./utils');
+var sessions    = {};
+var editor      = ace.edit("file");
 
 /**
- * Get the indentation from the configuration.
+ * Default editor configs.
  */
-var getIndentation = function() {
-    var indentation = config.get('editor.indentation').split(' ');
-
-    return {
-       quantity: indentation[0],
-       unit: indentation[1]
-    };
-}
-
-var editor = ace.edit("file");
-
 editor.setTheme("ace/theme/" + config.get('editor.theme'));
 editor.commands.removeCommand("find")
 editor.commands.removeCommand("replace")
@@ -30,6 +21,18 @@ editor.getSession().setUseWorker(false);
 editor.setFontSize(config.get('editor.font-size'));
 
 /**
+ * Get the indentation from the configuration.
+ */
+var getIndentation = function() {
+    var indentation = config.get('editor.indentation').split(' ');
+
+    return {
+        quantity: indentation[0],
+        unit: indentation[1]
+    };
+}
+
+/**
  * Sets the default formatting options
  * for the current session.
  */
@@ -38,15 +41,20 @@ var setFormatting = function() {
     editor.getSession().setUseSoftTabs(getIndentation().unit === 'spaces' || getIndentation().unit === 'space' || false);
 };
 
+/**
+ * Sets the current active editor session.
+ *
+ * @param resource
+ */
 var setSession = function(resource) {
     var sessionName = resource.path;
 
-    if (_.has(this.sessions, sessionName)) {
-        editor.setSession(this.sessions[sessionName]);
+    if (_.has(sessions, sessionName)) {
+        editor.setSession(sessions[sessionName]);
     } else {
         editor.setSession(ace.createEditSession(resource.data));
         editor.getSession().setMode("ace/mode/" + utils.guessLanguage(resource.name));
-        this.sessions[sessionName] = editor.getSession();
+        sessions[sessionName] = editor.getSession();
     }
 }
 
