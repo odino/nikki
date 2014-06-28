@@ -2,7 +2,7 @@
 
 A browser-based IDE written in NodeJS. **For Real**.
 
-![having fun here](https://raw.githubusercontent.com/odino/nikki/master/bin/images/nikki.gif?token=328420__eyJzY29wZSI6IlJhd0Jsb2I6b2Rpbm8vbmlra2kvbWFzdGVyL2Jpbi9pbWFnZXMvbmlra2kuZ2lmIiwiZXhwaXJlcyI6MTQwMzk4MDA4N30%3D--df43445fcfba173ae878bc6447c1169b61bc59cf)
+[![ScreenShot](https://raw.githubusercontent.com/odino/nikki/master/bin/images/nikki.png?token=328420__eyJzY29wZSI6IlJhd0Jsb2I6b2Rpbm8vbmlra2kvbWFzdGVyL2Jpbi9pbWFnZXMvbmlra2kuZ2lmIiwiZXhwaXJlcyI6MTQwMzk4MDA4N30%3D--df43445fcfba173ae878bc6447c1169b61bc59cf)](http://www.youtube.com/watch?v=i-Ez4Jz67yg&feature=youtu.be)
 
 ## Installation
 
