@@ -32,14 +32,14 @@ module.exports = {
                 });
 
                 socket.on('resource.open', function(resource){
-                    if (resource.type === 'directory') {
-                        self.openDir(resource, socket)
-                    } else {
+                    if (resource.type === 'file') {
                         fs.readFile(resource.path, 'utf-8', function(err, data){
                             if (err) throw err;
                             resource.data = data;
                             socket.emit('resource.opened', resource);
                         });
+                    } else {
+                        self.openDir(resource, socket)
                     }
                 });
 

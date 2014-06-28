@@ -18,11 +18,14 @@ var buildTitle = function(path) {
     $('#subject').html('').append(title);
 };
 
-socket.on('fs.root', function (fs) {
+var openDir = function(fs) {
     buildTitle(fs.root.path)
     var filesystem = $('<ul>')
     $('#fs').html('').append(filesystem);
-    history.pushState(null, null, fs.root.path);
+
+    if (!fs.root.from || fs.root.from !== 'window.popstate') {
+        history.pushState(fs, null, fs.root.path);
+    }
 
     _.each(fs.resources, function(resource, index){
         var res = $('<li>')
@@ -58,4 +61,17 @@ socket.on('fs.root', function (fs) {
     })
 
     $('[id="' + fs.root.path + '"]').addClass('active');
+}
+
+window.onpopstate = function(event) {
+    if (event.state && event.state.root) {
+        root        = event.state.root;
+        root.from   = 'window.popstate';
+
+        socket.emit('resource.open', root);
+    }
+}
+
+socket.on('fs.root', function (fs) {
+    openDir(fs);
 });
