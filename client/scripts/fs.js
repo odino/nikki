@@ -4,10 +4,13 @@ var socket      = require('./socket');
 
 var buildTitle = function(path) {
     var title       = $('<h2>')
+    title.attr('id', 'navigation');
+
     var segments    = [];
 
     _.each(path.split('/').splice(1), function(directory){
         var segment = $('<a>');
+        segment.addClass('segment');
         segment.text('/' + directory);
         segments.push(directory);
         segment.attr('href', '/' + segments.join('/'));
@@ -16,6 +19,12 @@ var buildTitle = function(path) {
     });
 
     $('#subject').html('').append(title);
+
+    $('#navigation .segment').click(function(){
+        socket.emit('resource.open', {path: $(this).attr('href')});
+
+        return false;
+    });
 };
 
 var openDir = function(fs) {
