@@ -15,7 +15,7 @@ var ui = {
      */
     openFile: function(resource) {
         $('#file').attr('filename', resource.path);
-        editor.openFile(resource)
+        editor.openFile(resource);
     },
     /**
      * Returns all the resources.

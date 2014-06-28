@@ -14,11 +14,17 @@
             </div>
             <div class="row">
                 <div id="fs" class="col-md-4 scrollable"></div>
-                <div id="file" class="col-md-8 scrollable"></div>
+                <div id="editor" class="col-md-8">
+                    <ul class="tabs nav nav-pills">
+                        <li class="tab active"><a href="#">New file...</a></li>
+                    </ul>
+                    <div id="file" class="scrollable"></div>
+                </div>
             </div>
         </div>
         <div id="bar"></div>
         <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="/bower_components/prismjs/prism.js"></script>
         <script src="/bower_components/prismjs/components/prism-php.min.js"></script>
         <script src="/bower_components/prismjs/components/prism-sql.min.js"></script>

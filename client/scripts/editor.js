@@ -5,6 +5,7 @@ var _           = require('lodash');
 var config      = require('./config');
 var events      = require('./events');
 var utils       = require('./utils');
+var tabs        = require('./tabs');
 var sessions    = {};
 var editor      = ace.edit("file");
 
@@ -50,8 +51,10 @@ var setSession = function(resource) {
     var sessionName = resource.path;
 
     if (_.has(sessions, sessionName)) {
+        tabs.select(resource);
         editor.setSession(sessions[sessionName]);
     } else {
+        tabs.add(resource);
         editor.setSession(ace.createEditSession(resource.data));
         editor.getSession().setMode("ace/mode/" + utils.guessLanguage(resource.name));
         sessions[sessionName] = editor.getSession();

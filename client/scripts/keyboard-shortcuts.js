@@ -10,15 +10,37 @@ var bar             = require('./bar');
 var search          = require('./search');
 var editor          = require('./editor');
 var socket          = require('./socket');
+var tabs            = require('./tabs');
+
+/**
+ * Moves to the tab on the right.
+ */
+keyboard.on('ctrl + openanglebracket', function() {
+    tabs.moveLeft();
+
+    return false;
+});
+
+/**
+ * Moves to the tab on the left.
+ */
+keyboard.on('ctrl + closeanglebracket', function() {
+    tabs.moveRight();
+
+    return false;
+});
 
 /**
  * Save file
  */
 keyboard.on('ctrl + s', function() {
-    bar.alert('Saving...');
-    state.openFile.data = editor.getValue();
+    if (state.focus === 'tab') {
+        bar.alert('Saving...');
+        state.openFile.data = editor.getValue();
 
-    socket.emit('resource.save', state.openFile);
+        socket.emit('resource.save', state.openFile);
+    }
+
     return false;
 });
 

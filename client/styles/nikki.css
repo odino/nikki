@@ -113,12 +113,24 @@
 
 #file {
     right: 0;
-    width: 65%;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
+    width: 100%;
 }
 
 .ace_gutter, .ace_scroller {
     margin-top: 10px;
+}
+
+.tabs {
+    font-size: 13px;
+    background-color: #011e3a;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.tooltip-inner {
+    max-width: 100%;
 }
