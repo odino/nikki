@@ -1,3 +1,5 @@
+<img style="float: right" src="http://openclipart.org/people/FEN/FEN_Bad_hair_day.svg" />
+
 # Nikki
 
 A browser-based IDE written in NodeJS. **For Real**.
