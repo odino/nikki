@@ -33,10 +33,22 @@ editor.setFontSize(config.get('editor.font-size'));
  * Sets the default formatting options
  * for the current session.
  */
-editor.setFormatting = function() {
+var setFormatting = function() {
     editor.getSession().setTabSize(getIndentation().quantity);
     editor.getSession().setUseSoftTabs(getIndentation().unit === 'spaces' || getIndentation().unit === 'space' || false);
 };
+
+var setSession = function(resource) {
+    var sessionName = resource.path;
+
+    if (_.has(this.sessions, sessionName)) {
+        editor.setSession(this.sessions[sessionName]);
+    } else {
+        editor.setSession(ace.createEditSession(resource.data));
+        editor.getSession().setMode("ace/mode/" + utils.guessLanguage(resource.name));
+        this.sessions[sessionName] = editor.getSession();
+    }
+}
 
 /**
  * Focus on the editor
@@ -46,14 +58,13 @@ events.on('state.focus.tab', function(state){
 });
 
 module.exports = {
+    sessions: {},
     getValue: function() {
         return editor.getValue();
     },
     openFile: function(resource) {
-        console.log(utils.guessLanguage(resource.name))
-        editor.setSession(ace.createEditSession(resource.data));
-        editor.getSession().setMode("ace/mode/" + utils.guessLanguage(resource.name));
-        editor.setFormatting();
+        setSession(resource);
+        setFormatting();
         editor.focus();
         editor.gotoLine(0)
     }

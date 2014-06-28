@@ -118,7 +118,7 @@ quite good on the latest versions of Chrome and Firefox.
 
 You can contribute to nikki by simply forking this repo and
 running it locally; `cd` into nikki's root, run `npm install`
-and `bower install` and launch the app with gulp:
+and launch the app with gulp:
 
 ```
 git clone git@github.com:odino/nikki.git
@@ -132,8 +132,12 @@ gulp
 
 Among the things I wanna add in the next weeks:
 
-* search for files, recursively, from the current dir
 * multiple editor tabs
+* create new file
+* create new directory
+* find in editor
+* find and replace
+* search for files, recursively, from the current dir
 * [tests](http://liamkaufman.com/blog/2012/01/28/testing-socketio-with-mocha-should-and-socketio-client/)
 
 By the way, the layout sucks, **big time**: never been a genious
