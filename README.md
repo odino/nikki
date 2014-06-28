@@ -136,7 +136,6 @@ gulp
 
 Among the things I wanna add in the next weeks:
 
-* multiple editor tabs
 * create new file
 * create new directory
 * find in editor
