@@ -171,3 +171,10 @@ waiting for that thing to respond to your actions.
 > Hey, couldn't you simply use TextMate or LightTable?
 
 Yes, but then, where's the fun?
+
+## Bonus
+
+The sickest thing is that I started building Nikki with WebStorm
+and, once it got quite decent, I continued to **build Nikki with
+Nikki**.
+
