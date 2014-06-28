@@ -8,6 +8,7 @@ var _           = require('lodash');
 var p           = require('path');
 var config      = require('./config');
 var utils       = require('./utils');
+var search      = require('./search');
 
 var sanitizePath = function(path) {
     return path.replace('~', utils.getUserHomeDir()).replace('//', '/');
@@ -26,6 +27,10 @@ module.exports = {
                 config.reload();
 
                 socket.emit('config', config.get());
+
+                socket.on('search', function (options) {
+                    search.findFiles(options, socket);
+                });
 
                 socket.on('boot', function (resource) {
                     self.openDir(resource, socket)

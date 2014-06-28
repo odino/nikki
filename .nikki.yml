@@ -12,3 +12,11 @@ projects:
     - '.git'
     - '.svn'
     - '.idea'
+search:
+  timeout:  '300'           # nikki will let you type for these many milliseconds before triggering a search with your input (decreasing this impacts performances and accuracy)
+  exclude:                  # files or directories to exclude
+    - '.git'
+    - '.svn'
+    - '.idea'
+    - 'bower_components'
+    - 'node_modules'

@@ -1,7 +1,14 @@
 var state       = require('./state');
+var socket      = require('./socket');
 var ui          = require('./ui');
+var fs          = require('./fs');
+var config      = require('./config');
 var resources   = ui.resources;
 var bar         = ui.bar;
+
+socket.on('search.result', function(resource){
+    fs.addResource(resource, null);
+});
 
 /**
  * Search object.
@@ -13,19 +20,12 @@ var search = {
      * Executes a search and hides elements
      * which are not matching it.
      */
-    executeSearch: function() {
-        if (bar().text()) {
-            var regex = search.getSearchRegex();
-
-            resources().filter(function(){
-                return !$(this).text().match(regex);
-            }).hide();
-
-            resources().filter(function(){
-                return $(this).text().match(regex);
-            }).show();
+    executeSearch: function(text) {
+        if (text) {
+            $('#fs .resource').remove();
+            socket.emit('search', {text: text, root: fs.getStructure().root});
         } else {
-            resources().show();
+            fs.reset();
         };
     },
     /**
@@ -64,8 +64,9 @@ var search = {
         bar().hide();
         bar().removeClass();
         bar().empty();
-        resources().show();
+        bar().unbind();
         state.switchFocus('fs');
+        fs.reset();
     },
     /**
      * Shows the search box.
@@ -79,19 +80,24 @@ var search = {
         bar().addClass('message-search');
         bar().attr('contenteditable', 'true');
 
-        var placeHolder = global ? 'Search files...' : 'Search files in the current directory...'
-
-        bar().attr('data-ph', placeHolder);
+        bar().attr('data-ph', 'Search files... (looking in ' + fs.getStructure().root.path + ')');
         bar().show();
         bar().focus();
 
-        bar().keyup(function(){
-            search.executeSearch();
+        bar().on('keyup', function () {
+            var searchValue = $(this).text();
+
+            setTimeout(function(){
+                if(searchValue == bar().text()) {
+                    search.executeSearch(searchValue)
+                };
+            }, config.get('search.timeout'));
         });
 
+        /**
+         * Do not allow pressing 'enter'.
+         */
         bar().keypress(function(e){
-            search.executeSearch();
-
             return e.which != 13;
         });
     },
