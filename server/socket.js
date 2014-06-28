@@ -70,8 +70,10 @@ module.exports = {
                 });
             });
 
-            var resources = _.sortBy(resources, function(resource) {
+            var resources = _.filter(_.sortBy(resources, function(resource) {
                 return resource.type + resource.name;
+            }), function(resource){
+                return !_.contains(config.get('projects.ignore'), resource.name);
             });
 
             socket.emit('fs.root', {root: resource, resources: resources});

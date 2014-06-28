@@ -8,3 +8,7 @@ editor:
   font-size:   '13px'
 projects:
   default: 'cwd'            # the project we should open by default: can be an absolute path (/var/www), a relative one (~/projects) or the directory from which you launch nikki (cwd)
+  ignore:                   # files or directories to ignore
+    - '.git'
+    - '.svn'
+    - '.idea'
