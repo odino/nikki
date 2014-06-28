@@ -4,16 +4,16 @@
 
 A fast, browser-based IDE written in NodeJS. **For Real**.
 
-Nikki's philosophy embraces the *less is better*, giving
-you a smart text editor that lets
-you focus on code rather than making you waste your time
-waiting for the IDE to boot, to suggest a method or to
-scan a new project.
+Nikki's philosophy embraces the *"less is better"* approach, giving
+you a smart text editor that lets you focus on code rather than
+making you waste your time waiting for the IDE to boot, to
+suggest a method or to scan a new project.
 
-Not to mention, Nikki doesn't need 64GB of RAM to run
-a simple "Hello World!" in Java.
-l
-;-)
+Nikki is purely built on JavaScript (both on the browser
+and on Node), HTML and CSS, uses [socket.io](http://socket.io/)
+to have fun with your filesystem and the
+[ACE editor](http://ace.c9.io/) to let you edit files
+like you're on your (ex) favourite IDE.
 
 ## Installation
 
