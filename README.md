@@ -1,8 +1,19 @@
+<img align="right" width="250px" src="http://openclipart.org/people/FEN/FEN_Bad_hair_day.svg" />
+
 # Nikki
 
-A browser-based IDE written in NodeJS. **For Real**.
+A fast, browser-based IDE written in NodeJS. **For Real**.
 
-[![ScreenShot](https://raw.githubusercontent.com/odino/nikki/master/bin/images/nikki.png?token=328420__eyJzY29wZSI6IlJhd0Jsb2I6b2Rpbm8vbmlra2kvbWFzdGVyL2Jpbi9pbWFnZXMvbmlra2kuZ2lmIiwiZXhwaXJlcyI6MTQwMzk4MDA4N30%3D--df43445fcfba173ae878bc6447c1169b61bc59cf)](http://www.youtube.com/watch?v=i-Ez4Jz67yg&feature=youtu.be)
+Nikki's philosophy embraces the *less is better*, giving
+you a smart text editor that lets
+you focus on code rather than making you waste your time
+waiting for the IDE to boot, to suggest a method or to
+scan a new project.
+
+Not to mention, Nikki doesn't need 64GB of RAM to run
+a simple "Hello World!" in Java.
+l
+;-)
 
 ## Installation
 
@@ -12,6 +23,8 @@ globally:
 ```
 npm install -g nikki
 ```
+
+[![ScreenShot](https://raw.githubusercontent.com/odino/nikki/master/bin/images/nikki.png?token=328420__eyJzY29wZSI6IlJhd0Jsb2I6b2Rpbm8vbmlra2kvbWFzdGVyL2Jpbi9pbWFnZXMvbmlra2kuZ2lmIiwiZXhwaXJlcyI6MTQwMzk4MDA4N30%3D--df43445fcfba173ae878bc6447c1169b61bc59cf)](http://www.youtube.com/watch?v=i-Ez4Jz67yg&feature=youtu.be)
 
 ## Usage
 
