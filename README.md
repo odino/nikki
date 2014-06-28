@@ -159,3 +159,16 @@ answers to this question.
 
 Of course, calling this thing an "IDE" is a bit - well, a lot -
 pretentious. On purpose ;-)
+
+The main idea behind nikki came up to my mind months ago
+when I was thinking on why we are still relying on desktop
+applications to interact with the filesystem while we can
+simply use sockets to make the browser communicate, in a simple
+way, with the server. At the same time, I got so much frustrated
+with traditional IDEs like Eclipse, Netbeans, WebStorm: tried
+all of them and it's just ridicolous how much time you spend in
+waiting for that thing to respond to your actions.
+
+> Hey, couldn't you simply use TextMate or LightTable?
+
+Yes, but then, where's the fun?
