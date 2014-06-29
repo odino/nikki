@@ -1,21 +1,22 @@
 var path    = require('path');
 
 var languageGuesserMap = {
-    json:   'json',
-    md:     'markdown',
-    yml:    'yaml',
-    js:     'javascript',
-    coffee: 'coffescript',
-    html:   'html',
-    rb:     'ruby',
-    php:    'php',
-    sql:    'sql',
-    py:     'python',
-    java:   'java',
-    css:    'css',
-    scss:   'scss',
-    c:      'c',
-    xml:    'xml'
+    json:       'json',
+    markdown:   'markdown',
+    md:         'markdown',
+    yml:        'yaml',
+    js:         'javascript',
+    coffee:     'coffescript',
+    html:       'html',
+    rb:         'ruby',
+    php:        'php',
+    sql:        'sql',
+    py:         'python',
+    java:       'java',
+    css:        'css',
+    scss:       'scss',
+    c:          'c',
+    xml:        'xml'
 }
 
 module.exports = {
