@@ -54,7 +54,12 @@ search.findFiles = function(options, socket) {
 
     dir.readFiles(options.root.path, {match: search.getRegex(options.text), excludeDir: ignoreDirs}, function(err, content, filename, next) {
         if (err) throw err;
-        var resource = {path: filename, type: 'file', name: p.basename(filename)};
+        var resource = {
+            path: filename,
+            type: 'file',
+            name: p.basename(filename),
+            parent: p.dirname(filename)
+        };
 
         socket.emit('search.result', resource)
         next();
