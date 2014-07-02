@@ -15,7 +15,7 @@ var tabs            = require('./tabs');
 /**
  * Moves to the tab on the right.
  */
-keyboard.on('ctrl + openanglebracket', function() {
+keyboard.on('ctrl + openanglebracket, command + openanglebracket', function() {
     tabs.moveLeft();
 
     return false;
@@ -24,7 +24,7 @@ keyboard.on('ctrl + openanglebracket', function() {
 /**
  * Moves to the tab on the left.
  */
-keyboard.on('ctrl + closeanglebracket', function() {
+keyboard.on('ctrl + closeanglebracket, command + closeanglebracket', function() {
     tabs.moveRight();
 
     return false;
@@ -33,7 +33,7 @@ keyboard.on('ctrl + closeanglebracket', function() {
 /**
  * Save file
  */
-keyboard.on('ctrl + s', function() {
+keyboard.on('ctrl + s, command + s', function() {
     if (state.focus === 'tab') {
         bar.alert('Saving...');
         state.openFile.data = editor.getValue();
@@ -47,7 +47,7 @@ keyboard.on('ctrl + s', function() {
 /**
  * Switch focus
  */
-keyboard.on('ctrl + shift + x', function() {
+keyboard.on('ctrl + shift + x, command + shift + x', function() {
     var focus = 'tab';
 
     if (state.focus === 'tab') {
@@ -60,7 +60,7 @@ keyboard.on('ctrl + shift + x', function() {
 /**
  * Local search
  */
-keyboard.on('ctrl + shift + f', function() {
+keyboard.on('ctrl + shift + f, command + shift + f', function() {
     search.toggle();
 
     return false;

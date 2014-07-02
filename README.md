@@ -95,7 +95,7 @@ Nikki is thought with shortcuts in mind and focused on letting
 you write code without using your mouse.
 
 Here are some of the shortcuts you might find useful
-while using it:
+while using it (on Macs, simply replace `ctrl` with `⌘`):
 
 * use `up` or `down` to move between files / directories
 * press `space` to open a file / directory
