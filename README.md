@@ -116,21 +116,20 @@ editor visit [its documentation](https://github.com/ajaxorg/ace/wiki/Default-Key
 ## File search
 
 When the file search is enabled (`ctrl + shift + z`),
-you can use a single word to match a filename, or a
-sequence of words to match a path.
-
-Long story short:
+you can use a single word or a
+sequence of words to match the filename; long story short:
 
 * `app` matches `app.js` and `app_production.js`
-* `app prod` matches `app_production.js`
+* `app prod` only matches `app_production.js`
 
 By default, nikki will look for files from the current
 directory onwards.
 
 ## Support
 
-Nikki should work on all modern browser, it's actually
-quite good on the latest versions of Chrome and Firefox.
+Nikki should work on all modern browser: for an optimal
+experience, though, we recommend the latest versions of
+Chrome and Firefox.
 
 ## Development
 
@@ -182,4 +181,3 @@ Yes, but then, where's the fun?
 The sickest thing is that I started building Nikki with WebStorm
 and, once it got quite decent, I continued to **build Nikki with
 Nikki**.
-
