@@ -68,6 +68,14 @@ events.on('state.focus.tab', function(state){
     editor.focus();
 });
 
+/**
+ * We're gonna remove the editor's session
+ * once a tab is closed.
+ */
+events.on('tabs.close', function(resource){
+    delete sessions[resource.path];
+});
+
 module.exports = {
     sessions: {},
     getValue: function() {

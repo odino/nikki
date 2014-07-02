@@ -8,6 +8,21 @@ var events  = require('./events');
 var tabs    = {};
 
 /**
+ * Closes the active tab, putting the focus
+ * to the one on the left or, if it doesnt
+ * exist, the one on the right.
+ */
+tabs.closeActive = function() {
+  var activeTab = $('.tab.active');
+  
+  if (activeTab.length) {
+      events.dispatch('tabs.close', JSON.parse(activeTab.attr('resource')));
+      tabs.moveLeft() || tabs.moveRight();
+      activeTab.remove();
+  }
+}
+
+/**
  * Adds a new tab in the editor, setting it as active.
  *
  * @param resource
@@ -55,7 +70,11 @@ tabs.move = function(direction) {
         activeTab.removeClass('active');
         element.addClass('active');
         events.dispatch('resource.opened', JSON.parse(element.attr('resource')));
+        
+        return true;
     };
+    
+    return false;
 }
 
 /**

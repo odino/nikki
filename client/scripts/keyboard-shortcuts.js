@@ -13,6 +13,15 @@ var socket          = require('./socket');
 var tabs            = require('./tabs');
 
 /**
+ * Closes a tab.
+ */
+keyboard.on('ctrl + shift + l, command + shift + l', function() {
+    tabs.closeActive();
+
+    return false;
+});
+
+/**
  * Moves to the tab on the right.
  */
 keyboard.on('ctrl + openanglebracket, command + openanglebracket', function() {

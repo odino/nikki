@@ -108,7 +108,9 @@ wanna open another file without using the mouse)
 When you are on the editor tab, use your usual shortcuts
 (ie. `tab` to indent, `ctrl + z` to undo), as we are using
 the [ACE editor](http://ace.c9.io/#nav=about).
-To switch between editor tabs, press `ctrl + <` and `ctrl + >`.
+
+To switch between editor tabs, press `ctrl + <` and `ctrl + >`;
+to close a tab simply use `ctrl + shift + l`.
 
 For a full list of keyboard shortcuts supported by the
 editor visit [its documentation](https://github.com/ajaxorg/ace/wiki/Default-Keyboard-Shortcuts).
