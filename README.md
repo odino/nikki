@@ -45,7 +45,7 @@ If you wish to start nikki on another port, simply specify it
 once you start the IDE:
 
 ```
-nikki --port
+nikki --port 8000
 ```
 
 By default, nikki opens on the directory from which it was launched,
