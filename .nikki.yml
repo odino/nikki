@@ -6,6 +6,23 @@ editor:
   theme:       'cobalt'     # see https://github.com/ajaxorg/ace/tree/master/lib/ace/theme
   indentation: '2 spaces'   # spaces or tabs
   font-size:   '13px'
+  extensions:               # for syntax highlighting: given a file extension, of which language shall we consider that file?
+    json:       'json'
+    markdown:   'markdown'
+    md:         'markdown'
+    yml:        'yaml'
+    js:         'javascript'
+    coffee:     'coffescript'
+    html:       'html'
+    rb:         'ruby'
+    php:        'php'
+    sql:        'sql'
+    py:         'python'
+    java:       'java'
+    css:        'css'
+    scss:       'scss'
+    c:          'c'
+    xml:        'xml'    
 projects:
   default: 'cwd'            # the project we should open by default: can be an absolute path (/var/www), a relative one (~/projects) or the directory from which you launch nikki (cwd)
   ignore:                   # files or directories to ignore
