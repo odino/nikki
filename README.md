@@ -148,14 +148,6 @@ npm install
 gulp
 ```
 
-Among the things I wanna add in the next weeks:
-
-* create new file
-* create new directory
-* find in editor
-* find and replace
-* [tests](http://liamkaufman.com/blog/2012/01/28/testing-socketio-with-mocha-should-and-socketio-client/)
-
 By the way, the layout sucks, **big time**: never been a genious
 with HTML and CSS so if you guys wanna come up with something I'd
 be super happy.
