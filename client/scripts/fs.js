@@ -126,6 +126,7 @@ socket.on('fs.root', function (fs) {
 });
 
 module.exports = {
+    buildTitle: buildTitle,
     addResource: addResource,
     reset: reset,
     getStructure: getStructure

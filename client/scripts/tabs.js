@@ -14,8 +14,8 @@ var tabs    = {};
  */
 tabs.add = function(resource) {
     var tab = $('<li data-toggle="tooltip" data-placement="top" title="' + resource.path + '" class="active tab">');
+    tab.attr('resource', JSON.stringify(resource));
     tab.attr('resource-path', resource.path);
-    tab.attr('resource-name', resource.name);
     tab.tooltip();
 
     var a = $('<a>');
@@ -54,7 +54,7 @@ tabs.move = function(direction) {
     if (element.length) {
         activeTab.removeClass('active');
         element.addClass('active');
-        events.dispatch('resource.opened', {path: element.attr('resource-path'), name: element.attr('resource-name')});
+        events.dispatch('resource.opened', JSON.parse(element.attr('resource')));
     };
 }
 

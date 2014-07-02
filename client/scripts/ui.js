@@ -1,6 +1,7 @@
 var events          = require('./events');
 var state           = require('./state');
 var editor          = require('./editor');
+var fs              = require('./fs');
 
 /**
  * UI object.
@@ -14,6 +15,12 @@ var ui = {
      * @param resource
      */
     openFile: function(resource) {
+        $('.resource.open').removeClass('open');
+        $('.resource.active').addClass('open');
+        $('#subject span').remove();
+        fs.buildTitle(resource.parent);
+        $('#subject #navigation').append('<span class="highlight">/' + resource.name + '</span>');
+        state.switchFocus('tab');
         $('#file').attr('filename', resource.path);
         editor.openFile(resource);
     },
@@ -36,11 +43,6 @@ var ui = {
 };
 
 events.on('resource.opened', function(resource){
-    $('.resource.open').removeClass('open');
-    $('.resource.active').addClass('open');
-    $('#subject span').remove();
-    $('#subject #navigation').append('<span class="highlight">/' + resource.name + '</span>');
-    state.switchFocus('tab');
     ui.openFile(resource);
 });
 
