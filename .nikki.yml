@@ -20,3 +20,5 @@ search:
     - '.idea'
     - 'bower_components'
     - 'node_modules'
+general:
+  process-name: 'nikki'
