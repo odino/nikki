@@ -61,7 +61,10 @@ module.exports = {
         resource.path = sanitizePath(resource.path);
 
         fs.readdir(resource.path, function (err, files) {
-            if (err) throw err;
+            if (err && err.code === 'ENOENT') {
+              socket.emit('server.error', "Directory {dir} does not exist".replace('{dir}', err.path));
+            }
+          
             resources = [];
 
             _.each(files, function(file){
