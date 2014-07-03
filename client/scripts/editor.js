@@ -13,8 +13,9 @@ var editor      = ace.edit("file");
  * Default editor configs.
  */
 editor.setTheme("ace/theme/" + config.get('editor.theme'));
-editor.commands.removeCommand("find")
-editor.commands.removeCommand("replace")
+editor.commands.removeCommand("find");
+editor.commands.removeCommand("replace");
+editor.commands.removeCommand("expandtoline");
 editor.renderer.setPadding(10)
 editor.setHighlightActiveLine(false);
 editor.setShowPrintMargin(false);
