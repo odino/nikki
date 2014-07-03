@@ -25,17 +25,14 @@ var open    = _.has(argv, 'open') ? argv.open : config.get('app.open');
 app.listen(port);
 
 blankline();
-
-if (!open) {
-    console.log('Open your browser at ' + url + ' to access the IDE')
-    blankline();
-}
-
 console.log(prettyjson.render({'Configuration used': config.get()}, {noColor: true}));
 
 if (open) {
     var open = require("open");
     open(url);
+} else {
+    blankline();
+    console.log('Open your browser at ' + url + ' to access the IDE')
 }
 
 function handler (req, res) {
