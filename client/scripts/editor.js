@@ -79,6 +79,9 @@ events.on('tabs.close', function(resource){
 
 module.exports = {
     sessions: {},
+    getLine: function() {
+        return editor.selection.anchor.row;
+    },    
     getValue: function() {
         return editor.getValue();
     },

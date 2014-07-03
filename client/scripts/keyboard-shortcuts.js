@@ -11,6 +11,28 @@ var search          = require('./search');
 var editor          = require('./editor');
 var socket          = require('./socket');
 var tabs            = require('./tabs');
+var config          = require('./config');
+
+/**
+ * Open in github.
+ * 
+ * Please note that this feature depends on the configuration.
+ */
+keyboard.on('ctrl + g, command + g', function() {
+    if (state.openFile && config.get('github.enabled')) {
+        console.log(config.get())
+        var url = 'https://github.com/';
+        username = config.get('github.username');
+        var parts = state.openFile.path.replace(config.get('github.path'), '');
+        var repo = parts.split('/')[1];
+        var path = parts.split(repo)[1];
+        var url = url + username + '/' + repo + '/blob/master/' + path + '#L' + editor.getLine();
+
+        window.open(url, '_tab');
+    }
+
+    return false;
+});
 
 /**
  * Closes a tab.

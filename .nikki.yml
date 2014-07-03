@@ -37,5 +37,10 @@ search:
     - '.idea'
     - 'bower_components'
     - 'node_modules'
+github:                         # these configs will affect the "Open in Github" shortcut (ctrl + g)
+  enabled: false                # disabled by default, you need to configure the following lines wisely :)
+  username: 'your GH username'  # your github username
+  path: '/home/USER/projects'   # absolute path to your github projects (ie. myProject is in /home/USER/projects/myProject)
+  default_branch: 'master'
 general:
-  process-name: 'nikki'
+  process-name: 'nikki'         # name of the process you will find under ps -ef
