@@ -20,7 +20,9 @@ tabs.closeActive = function() {
       tabs.moveLeft() || tabs.moveRight();
       activeTab.remove();
   }
-}
+  
+  tabs.persist();
+};
 
 /**
  * Adds a new tab in the editor, setting it as active.
@@ -43,7 +45,26 @@ tabs.add = function(resource) {
 
     $('.tab').removeClass('active');
     $('.tabs').append(tab);
+    tabs.persist();
 };
+
+/**
+ * Persists the open tabs into the localStorage.
+ */
+tabs.persist = function() {
+    var tabs = [];
+    
+    $('.tab').each(function(){
+      var resource = $(this).attr('resource');
+      
+      if (resource) {
+        console.log(JSON.parse(resource));
+        tabs.push(resource);
+      }
+    });
+    
+    localStorage.setItem('nikki.tabs', JSON.stringify(tabs));
+}
 
 /**
  * Selects the open tab that represents the given
@@ -94,5 +115,16 @@ tabs.moveLeft = function() {
 tabs.moveRight = function() {
     return tabs.move('next');
 }
+
+/**
+ * Re-open saved tabbs
+ */
+socket.on('fs.root', function(){
+    var savedTabs = JSON.parse(localStorage.getItem('nikki.tabs'));
+
+    savedTabs.forEach(function(resource){
+        socket.emit('resource.open', JSON.parse(resource))
+    });
+});
 
 module.exports = tabs;
