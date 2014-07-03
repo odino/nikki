@@ -1,6 +1,7 @@
 var _           = require('lodash');
 var keyboard    = require('./keyboard');
 var socket      = require('./socket');
+var p           = require('path');
 
 /**
  * Builds the title of the page.
@@ -33,6 +34,80 @@ var buildTitle = function(path) {
 };
 
 /**
+ * Rules that assign some CSS classes to resources
+ * based on their (guessed) type.
+ */
+var iconRules = {
+    read: function(resource) {
+        if (_.contains(['.md', '.markdown'], p.extname(resource.name))) {
+            return "glyphicon fa fa-book fa-1x";
+        }
+    },
+    lock: function(resource) {
+        if (resource.type === 'file' && p.extname(resource.name) === '.lock') {
+            return "glyphicon fa fa-lock fa-1x";
+        }
+    },
+    html: function(resource) {
+        if (resource.type === 'file' && p.extname(resource.name) === '.html') {
+            return "glyphicon fa fa-code fa-1x";
+        }
+    },
+    sql: function(resource) {
+        if (resource.type === 'file' && p.extname(resource.name) === '.sql') {
+            return "glyphicon fa fa-database fa-1x";
+        }
+    },
+    log: function(resource) {
+        if (resource.type === 'file' && p.extname(resource.name) === '.log') {
+            return "glyphicon fa fa-exclamation-triangle fa-1x";
+        }
+    },
+    coffeescript: function(resource) {
+        if (resource.type === 'file' && p.extname(resource.name) === '.coffee') {
+            return "glyphicon fa fa-coffee fa-1x";
+        }
+    },
+    nikki: function(resource) {
+        if (resource.name === '.nikki.yml') {
+            return "glyphicon fa fa-heart fa-1x";
+        }
+    },
+    git: function(resource) {
+        if (resource.name.match(/^\.git/)) {
+            return "glyphicon fa fa-git fa-1x";
+        }
+    },
+    executable: function(resource) {
+        if (resource.type === 'file' && !p.extname(resource.name)) {
+            return "glyphicon fa fa-terminal fa-1x";
+        }
+    },
+    dir: function(resource) {
+        if (resource.type === 'directory') {
+            return "glyphicon fa fa-folder fa-1x";
+        }
+    },
+    file: function(resource) {
+        if (resource.type === 'file') {
+            return "glyphicon fa fa-file-text-o fa-1x";
+        }
+    }
+};
+
+var iconize = function(icon, resource) {
+    var match = false;
+
+    _.forEach(iconRules, function(rule){
+        if (!match && rule(resource)) {
+            icon.addClass(rule(resource));
+
+            match = true;
+        }
+    });
+};
+
+/**
  * Adds a resource to the filesystem.
  *
  * @param resource
@@ -44,11 +119,7 @@ var addResource = function(resource, index) {
 
     var icon = $('<span>')
 
-    if (resource.type === 'directory') {
-        icon.addClass("glyphicon glyphicon-book")
-    } else {
-        icon.addClass("glyphicon glyphicon-list-alt")
-    }
+    iconize(icon, resource);
 
     res.addClass('resource');
 

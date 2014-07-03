@@ -1,5 +1,7 @@
 .glyphicon {
-    margin: 1em;
+    font-size: 1.5em;
+    margin: 0.5em;
+    margin-left: 0;
 }
 
 #bar {
