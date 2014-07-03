@@ -58,7 +58,6 @@ tabs.persist = function() {
       var resource = $(this).attr('resource');
       
       if (resource) {
-        console.log(JSON.parse(resource));
         tabs.push(resource);
       }
     });
@@ -122,9 +121,11 @@ tabs.moveRight = function() {
 socket.on('fs.root', function(){
     var savedTabs = JSON.parse(localStorage.getItem('nikki.tabs'));
 
-    savedTabs.forEach(function(resource){
-        socket.emit('resource.open', JSON.parse(resource))
-    });
+    if (savedTabs) {
+      savedTabs.forEach(function(resource){
+          socket.emit('resource.open', JSON.parse(resource))
+      });
+    }
 });
 
 module.exports = tabs;
