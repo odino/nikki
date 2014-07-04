@@ -7,7 +7,7 @@ var resources   = ui.resources;
 var bar         = ui.bar;
 
 socket.on('search.result', function(resource){
-    fs.addResource(resource, null);
+    fs.addResource(resource);
 });
 
 /**

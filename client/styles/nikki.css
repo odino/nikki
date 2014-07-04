@@ -136,3 +136,10 @@
 .tooltip-inner {
     max-width: 100%;
 }
+
+.resource .path {
+  word-wrap: break-word; 
+  font-size: 0.8em;
+  padding-left: 2.5em;
+  color: #7A7A7A;
+}

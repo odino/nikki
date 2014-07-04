@@ -1,7 +1,8 @@
 var _           = require('lodash');
+var p           = require('path');
 var keyboard    = require('./keyboard');
 var socket      = require('./socket');
-var p           = require('path');
+var state       = require('./state');
 
 /**
  * Builds the title of the page.
@@ -113,7 +114,7 @@ var iconize = function(icon, resource) {
  * @param resource
  * @param index
  */
-var addResource = function(resource, index) {
+var addResource = function(resource) {
     var res = $('<li>')
     res.addClass(resource.type);
 
@@ -123,12 +124,21 @@ var addResource = function(resource, index) {
 
     res.addClass('resource');
 
-    if (index === 0) {
+    if (!$('.resource.active').length) {
         res.addClass('active');
     }
 
     res.attr('id', resource.path);
     res.text(resource.name);
+    
+    if (state.focus === 'bar') {
+      var path = $('<p>');
+      path.addClass('path')
+      path.text(resource.parent);
+      
+      res.append(path);
+    }
+    
     res.hover(function(){
         $('.resource.active').removeClass('active');
         res.addClass('active');
@@ -159,7 +169,7 @@ var openDir = function(fs) {
     }
 
     _.each(fs.resources, function(resource, index){
-        addResource(resource, index)
+        addResource(resource)
     })
 
     $('[id="' + fs.root.path + '"]').addClass('active');
