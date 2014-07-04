@@ -6,6 +6,7 @@
  */
 var p       = require('path');
 var dir     = require('node-dir');
+var debug   = require('debug')('nikki:search');
 var config  = require('./config');
 
 var search = {};
@@ -62,6 +63,7 @@ search.findFiles = function(options, socket) {
         };
 
         socket.emit('search.result', resource)
+        debug('search result ', resource);
         next();
     });
 }

@@ -6,6 +6,7 @@
 var fs          = require('fs');
 var _           = require('lodash');
 var p           = require('path');
+var debug       = require('debug')('nikki:socket');
 var config      = require('./config');
 var utils       = require('./utils');
 var search      = require('./search');
@@ -20,7 +21,9 @@ module.exports = {
         var io   = require('socket.io')(app);
 
         io.on('connection', function (socket) {
+            debug('connected');
             socket.on('readyOn', function(path){
+                debug('client is ready on ', path);
                 path = sanitizePath(path);
 
                 config.config.paths.push(path);
@@ -29,6 +32,7 @@ module.exports = {
                 socket.emit('config', config.get());
 
                 socket.on('search', function (options) {
+                    debug('client searching', options);
                     search.findFiles(options, socket);
                 });
 
@@ -39,6 +43,8 @@ module.exports = {
                 });
 
                 socket.on('resource.open', function(resource){
+                    debug('opening resource: ', resource);
+                    
                     if (resource.type === 'file') {
                         fs.readFile(resource.path, 'utf-8', function(err, data){
                             if (err) throw err;
@@ -55,11 +61,13 @@ module.exports = {
                         if (err) throw err;
                         socket.emit('resource.saved', resource);
                     });
+                    debug('saved resource ', resource);
                 });
             });
         });
     },
     openDir: function(resource, socket, callback) {
+        debug('opening dir ', resource);
         resource.path = sanitizePath(resource.path);
 
         fs.readdir(resource.path, function (err, files) {

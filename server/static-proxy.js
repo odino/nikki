@@ -3,9 +3,10 @@
  *
  * @type {*}
  */
-var fs   = require('fs');
-var p    = require('path');
-var url  = require('url');
+var fs    = require('fs');
+var p     = require('path');
+var url   = require('url');
+var debug = require('debug')('nikki:static-proxy');
 
 var contentTypes = {
     '.js':      'application/javascript',
@@ -21,11 +22,11 @@ module.exports = function(path, req, res) {
 
 
     if (parts[0] == '') {
-        fs.readFile(p.join(__dirname, '..', path, url.parse(parts[1]).pathname),
-            function (err, data) {
-
-                res.writeHead(200, {'content-type': contentTypes[p.extname(url.parse(parts[1]).pathname)]});
-                res.end(data);
-            });
+        var filePath = url.parse(parts[1]).pathname;
+        fs.readFile(p.join(__dirname, '..', path, filePath), function (err, data) {
+            debug('Served ', filePath)
+            res.writeHead(200, {'content-type': contentTypes[p.extname(filePath)]});
+            res.end(data);
+        });
     };
 }

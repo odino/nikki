@@ -11,6 +11,7 @@ var fs            = require('fs');
 var yaml          = require('js-yaml');
 var reconfig      = require('reconfig');
 var p             = require('path');
+var debug         = require('debug')('nikki:config');
 var utils         = require('./utils');
 var configuration = {
     paths:  [
@@ -25,9 +26,13 @@ var config = new reconfig(configuration);
 config.reload = function() {
     try {
         _.forEach(config.get('paths'), function(path){
-            config.config = _.merge(config.config, yaml.safeLoad(fs.readFileSync(p.join(path, '.nikki.yml'), 'utf8')));
+            var filePath  = p.join(path, '.nikki.yml');
+            config.config = _.merge(config.config, yaml.safeLoad(fs.readFileSync(filePath, 'utf8')));
+            debug('Loaded config in ', filePath)
         });
-    } catch (err) {};
+    } catch (err) {
+      debug('Warning while loading the config ', err)
+    };
 };
 
 config.reload();
