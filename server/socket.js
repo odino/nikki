@@ -33,7 +33,9 @@ module.exports = {
                 });
 
                 socket.on('boot', function (resource) {
-                    self.openDir(resource, socket)
+                    self.openDir(resource, socket, function(){
+                      socket.emit('boot.done');
+                    });
                 });
 
                 socket.on('resource.open', function(resource){
@@ -57,7 +59,7 @@ module.exports = {
             });
         });
     },
-    openDir: function(resource, socket) {
+    openDir: function(resource, socket, callback) {
         resource.path = sanitizePath(resource.path);
 
         fs.readdir(resource.path, function (err, files) {
@@ -85,6 +87,7 @@ module.exports = {
             });
 
             socket.emit('fs.root', {root: resource, resources: resources});
+            callback && callback();
         });
     }
 }

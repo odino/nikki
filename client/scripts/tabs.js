@@ -118,7 +118,7 @@ tabs.moveRight = function() {
 /**
  * Re-open saved tabbs
  */
-socket.on('fs.root', function(){
+socket.on('boot.done', function(){
     var savedTabs = JSON.parse(localStorage.getItem('nikki.tabs'));
 
     if (savedTabs) {
