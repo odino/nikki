@@ -122,7 +122,7 @@ editor visit [its documentation](https://github.com/ajaxorg/ace/wiki/Default-Key
 
 ## File search
 
-When the file search is enabled (`ctrl + shift + z`),
+When the file search is enabled (`ctrl + shift + f`),
 you can use a single word or a
 sequence of words to match the filename; long story short:
 
