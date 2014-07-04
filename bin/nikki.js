@@ -27,12 +27,16 @@ if (argv.help) {
     console.log();
     console.log(' Options:');
     console.log();
+    console.log('    --stop       stop nikki');
+    console.log('    --status     checks whether nikki is running');
     console.log('    --host       defines on which host we will run (default: ' + config.app.host + ')');
     console.log('    --port       defines on which port we will run (default: ' + config.app.port + ')');
+    console.log('    --dport      defines on which port the daemon will listen for signals (default: ' + config.daemon.port + ')');
     console.log('    --no-open    do not open the browser after booting');
     console.log();
     console.log(' Examples:');
     console.log();
+    console.log('    $ nikki');
     console.log('    $ nikki --no-open');
     console.log('    $ nikki --port 8000');
     console.log('    $ nikki --host nikki.local --port 8000 --no-open');

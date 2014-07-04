@@ -2,6 +2,8 @@ app:
   host: 'localhost'
   port: '9123'
   open: 'true'
+daemon:
+  port: '9124'
 editor:
   theme:       'cobalt'     # see https://github.com/ajaxorg/ace/tree/master/lib/ace/theme
   indentation: '2 spaces'   # spaces or tabs

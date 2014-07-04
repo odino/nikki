@@ -41,6 +41,9 @@ where the IDE is running.
 To open specific project, simply specify it in the URL, for
 example `http://localhost:9123/home/odino/my-project`.
 
+You can check whether nikki is runnin with a `nikki --status`;
+if you want to stop nikki simply run `nikki --stop`.
+
 If you wish to start nikki on another port, simply specify it
 once you start the IDE:
 
@@ -59,7 +62,9 @@ nikki
 
 will open the browser at `http://localhost:9123/tmp`
 
-If you feel lost, simply run a `nikki --help` and get some comfort.
+If you feel lost, simply run a `nikki --help` and get some comfort;
+in any case, upon booting, you will find a `nikki.log` file
+in nikki's root directory: in case of errors, have a look there.
 
 ## Configuration
 
