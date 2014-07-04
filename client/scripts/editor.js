@@ -75,6 +75,10 @@ events.on('state.focus.tab', function(state){
  */
 events.on('tabs.close', function(resource){
     delete sessions[resource.path];
+    
+    if (!$('.tab[resource]').length) {
+      editor.setValue('');
+    }
 });
 
 module.exports = {

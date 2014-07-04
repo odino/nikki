@@ -16,9 +16,9 @@ tabs.closeActive = function() {
   var activeTab = $('.tab.active');
   
   if (activeTab.length) {
-      events.dispatch('tabs.close', JSON.parse(activeTab.attr('resource')));
-      tabs.moveLeft() || tabs.moveRight();
+      !tabs.moveLeft() && !tabs.moveRight();
       activeTab.remove();
+      events.dispatch('tabs.close', JSON.parse(activeTab.attr('resource')));
   }
   
   tabs.persist();
