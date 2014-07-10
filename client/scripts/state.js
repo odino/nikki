@@ -14,7 +14,10 @@ var state   = {
       return;
     }
     
-    events.dispatch('state.focus.change', this);
+    events.dispatch('state.focus.change', {
+      prev: this.focus,
+      next: focus
+    });
     events.dispatch('state.focus.' + focus, this);
 
     this.focus = focus;

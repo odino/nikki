@@ -113,7 +113,7 @@ editor.on('focus', function(){
 });
 
 events.on('state.focus.change', function(state){
-  if (state.focus === 'tab') {
+  if (state.prev === 'tab') {
     editor.blur();
   }
 });
