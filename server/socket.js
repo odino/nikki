@@ -58,7 +58,12 @@ module.exports = {
                     
                     if (resource.type === 'file') {
                         fs.readFile(resource.path, 'utf-8', function(err, data){
-                            if (err) throw err;
+                            if (err && err.code === 'ENOENT') {
+                              message = "File {f} does not exist, was probably deleted outside of nikki";
+                              socket.emit('server.alert', message.replace('{f}', err.path));
+                              return;
+                            }
+                            
                             resource.data = data;
                             socket.emit('resource.opened', resource);
                         });
