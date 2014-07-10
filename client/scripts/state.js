@@ -7,19 +7,19 @@
 var events  = require('./events');
 
 var state   = {
-    openFile: null,
-    focus:    'fs',
-    switchFocus: function(focus) {
-        events.dispatch('state.focus.change', this);
-        events.dispatch('state.focus.' + focus, this);
+  openFile: null,
+  focus:    'fs',
+  switchFocus: function(focus) {
+    events.dispatch('state.focus.change', this);
+    events.dispatch('state.focus.' + focus, this);
 
-        this.focus = focus;
-        $(document.activeElement).blur();
-    }
+    this.focus = focus;
+    $(document.activeElement).blur();
+  }
 }
 
 events.on('resource.opened', function(resource){
-    state.openFile = resource;
+  state.openFile = resource;
 });
 
 module.exports = state;
