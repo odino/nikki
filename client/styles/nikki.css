@@ -15,6 +15,12 @@
     font-size: 1.2em;
 }
 
+.message-question {
+    background-color: #D1DEF0;
+    border: 1px solid #232387;
+    color: #131369;
+}
+
 .message-info {
     background-color: #e0fdde;
     border: 1px solid #d4e6cc;

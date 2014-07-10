@@ -4,6 +4,7 @@
  * @type {*}
  */
 var fs          = require('fs');
+var fse         = require('fs-extra');
 var _           = require('lodash');
 var p           = require('path');
 var debug       = require('debug')('nikki:socket');
@@ -34,6 +35,16 @@ module.exports = {
                 socket.on('search', function (options) {
                     debug('client searching', options);
                     search.findFiles(options, socket);
+                });
+                
+                socket.on('resource.delete', function (resource) {
+                    debug('deleting resource', resource);
+                    fse.remove(resource.path, function(err){
+                      if (err) throw err;
+                    
+                      socket.emit('resource.deleted', resource);
+                      self.openDir({path: resource.parent}, socket);
+                    });
                 });
 
                 socket.on('boot', function (resource) {

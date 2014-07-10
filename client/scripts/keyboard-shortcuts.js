@@ -12,6 +12,51 @@ var editor          = require('./editor');
 var socket          = require('./socket');
 var tabs            = require('./tabs');
 var config          = require('./config');
+var ui              = require('./ui');
+
+/**
+ * Delete a file
+ */
+keyboard.on('y', function() {
+  var question = bar.question();
+  
+  if (question) {
+    var event   = question.attr('event');
+    var subject = JSON.parse(question.attr('subject'));
+    socket.emit(event, subject);
+    bar.hide();
+    
+    return false;
+  }
+});
+
+/**
+ * Delete a file
+ */
+keyboard.on('n', function() {
+  var question = bar.question();
+  
+  if (question) {
+    bar.hide();
+    
+    return false;
+  }
+});
+
+/**
+ * Delete a file
+ */
+keyboard.on('delete', function() {
+  var activeResource = $('.resource.active');
+  
+  if (activeResource.length) {
+    var resource = JSON.parse(activeResource.attr('data-resource'));
+    
+    bar.ask('Are you sure you want to delete ' + resource.path + '?', 'resource.delete', resource);
+  }
+
+  return false;
+});
 
 /**
  * Open in github.

@@ -5,6 +5,7 @@
  */
 var socket  = require('./socket');
 var events  = require('./events');
+var state   = require('./state');
 var tabs    = {};
 
 /**
@@ -125,7 +126,7 @@ socket.on('boot.done', function(){
       savedTabs.forEach(function(resource){
           socket.emit('resource.open', JSON.parse(resource))
       });
-    }
+    };
 });
 
 module.exports = tabs;

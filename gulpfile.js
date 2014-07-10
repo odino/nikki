@@ -18,7 +18,7 @@ gulp.task('server', function(cb) {
         script: 'server/index.js',
         ext: 'js',
         env: {'NODE_ENV': 'development', 'DEBUG': 'nikki:*'},
-        args: ['--no-open', '--daemon', '--dport 9125']
+        args: ['--port=9000', '--no-open', '--daemon', '--dport=9001']
     });
     cb();
 });

@@ -4,6 +4,11 @@ var keyboard    = require('./keyboard');
 var socket      = require('./socket');
 var state       = require('./state');
 
+$('#fs').mouseenter(function(){
+  state.switchFocus('fs');
+  $(this).focus();
+});
+
 /**
  * Builds the title of the page.
  *
