@@ -26,12 +26,12 @@ editor.setFontSize(config.get('editor.font-size'));
  * Get the indentation from the configuration.
  */
 var getIndentation = function() {
-    var indentation = config.get('editor.indentation').split(' ');
+  var indentation = config.get('editor.indentation').split(' ');
 
-    return {
-        quantity: indentation[0],
-        unit: indentation[1]
-    };
+  return {
+    quantity: indentation[0],
+    unit: indentation[1]
+  };
 }
 
 /**
@@ -39,8 +39,8 @@ var getIndentation = function() {
  * for the current session.
  */
 var setFormatting = function() {
-    editor.getSession().setTabSize(getIndentation().quantity);
-    editor.getSession().setUseSoftTabs(getIndentation().unit === 'spaces' || getIndentation().unit === 'space' || false);
+  editor.getSession().setTabSize(getIndentation().quantity);
+  editor.getSession().setUseSoftTabs(getIndentation().unit === 'spaces' || getIndentation().unit === 'space' || false);
 };
 
 /**
@@ -49,24 +49,69 @@ var setFormatting = function() {
  * @param resource
  */
 var setSession = function(resource) {
-    var sessionName = resource.path;
+  var session;
+  var sessionName = resource.path;
+  saveCurrentSession(resource);
 
-    if (_.has(sessions, sessionName)) {
-        tabs.select(resource);
-        editor.setSession(sessions[sessionName]);
-    } else {
-        tabs.add(resource);
-        editor.setSession(ace.createEditSession(resource.data));
-        editor.getSession().setMode("ace/mode/" + utils.guessLanguage(resource.name));
-        sessions[sessionName] = editor.getSession();
-    }
+  if (_.has(sessions, sessionName)) {
+    session = reopenSession(sessionName, resource);
+  } else {
+    session = createNewSession(sessionName, resource);
+  }
+  
+  sessions.__current = session;
+}
+
+/**
+ * Reopens an existing editor session.
+ */
+var reopenSession = function(name, resource) {
+  tabs.select(resource);
+  var session = sessions[name];
+
+  editor.setSession(session.session);
+  editor.gotoLine(session.cursor.row + 1, session.cursor.column + 1);
+  
+  return session;
+};
+
+/**
+ * Creates a new editor session.
+ */
+var createNewSession = function(name, resource) {
+  tabs.add(resource);
+  editor.setSession(ace.createEditSession(resource.data));
+  editor.getSession().setMode("ace/mode/" + utils.guessLanguage(resource.name));
+  var session = {
+    session: editor.getSession(),
+    cursor: editor.getSelection().getCursor(),
+    name: name
+  };
+  
+  sessions[name] = session;
+  
+  return session;
+}
+
+/**
+ * Saves the latest state of the current session.
+ * 
+ * Used to remember the position of the cursor in
+ * this session.
+ */
+var saveCurrentSession = function() {
+  var session = editor.getSession();
+  
+  if (session && sessions.__current) {
+    sessions[sessions.__current.name].cursor = editor.getSelection().getCursor();
+  }
 }
 
 /**
  * Focus on the editor
  */
 events.on('state.focus.tab', function(state){
-    editor.focus();
+  editor.focus();
 });
 
 /**
@@ -74,25 +119,24 @@ events.on('state.focus.tab', function(state){
  * once a tab is closed.
  */
 events.on('tabs.close', function(resource){
-    delete sessions[resource.path];
-    
-    if (!$('.tab[resource]').length) {
-      editor.setValue('');
-    }
+  delete sessions[resource.path];
+  
+  if (!$('.tab[resource]').length) {
+    editor.setValue('');
+  }
 });
 
 module.exports = {
-    sessions: {},
-    getLine: function() {
-        return editor.selection.anchor.row;
-    },    
-    getValue: function() {
-        return editor.getValue();
-    },
-    openFile: function(resource) {
-        setSession(resource);
-        setFormatting();
-        editor.focus();
-        editor.gotoLine(0)
-    }
+  sessions: {},
+  getLine: function() {
+    return editor.selection.anchor.row;
+  },    
+  getValue: function() {
+    return editor.getValue();
+  },
+  openFile: function(resource) {
+    setSession(resource);
+    setFormatting();
+    editor.focus();
+  }
 };
