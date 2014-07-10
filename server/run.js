@@ -14,33 +14,30 @@ var defaultProject  = config.get('projects.default');
 var port            = argv.port || config.get('app.port');
 var host            = argv.host || config.get('app.host');
 
+if (defaultProject === 'cwd') {
+  defaultProject = process.cwd();
+}
+  
+var url   = 'http://' + host + ':' + port + '/' + defaultProject;
+var open  = _.has(argv, 'open') ? argv.open : config.get('app.open');
+
 var run = function() {
   var app = require('http').createServer(handler)
-  
-  if (defaultProject === 'cwd') {
-      defaultProject = process.cwd();
-  }
-  
-  var url     = 'http://' + host + ':' + port + '/' + defaultProject;
-  var open    = _.has(argv, 'open') ? argv.open : config.get('app.open');
   
   app.listen(port);
   
   if (open) {
-      var open = require("open");
-      open(url);
-  } else {
-      blankline();
-      console.log('Open your browser at ' + url + ' to access the IDE')
+    var open = require("open");
+    open(url);
   }
   
   function handler (req, res) {
-      if (!path.extname(req.url)) {
-          serveIndex(req, res);
-      }
+    if (!path.extname(req.url)) {
+      serveIndex(req, res);
+    }
   
-      staticproxy('/bower_components', req, res);
-      staticproxy('/client', req, res);
+    staticproxy('/bower_components', req, res);
+    staticproxy('/client', req, res);
   }
   
   /**
@@ -58,5 +55,10 @@ module.exports = function() {
     run();
   } else {
     daemonize(port);
+    
+    if (!open) {
+      blankline();
+      console.log('Open your browser at ' + url + ' to access the IDE')
+    }
   }
 }
