@@ -17,9 +17,9 @@ tabs.closeActive = function() {
   var activeTab = $('.tab.active');
   
   if (activeTab.length) {
-      !tabs.moveLeft() && !tabs.moveRight();
-      activeTab.remove();
-      events.dispatch('tabs.close', JSON.parse(activeTab.attr('resource')));
+    !tabs.moveLeft() && !tabs.moveRight();
+    activeTab.remove();
+    events.dispatch('tabs.close', JSON.parse(activeTab.attr('resource')));
   }
   
   tabs.persist();
@@ -31,22 +31,22 @@ tabs.closeActive = function() {
  * @param resource
  */
 tabs.add = function(resource) {
-    var tab = $('<li data-toggle="tooltip" data-placement="top" title="' + resource.path + '" class="active tab">');
-    tab.attr('resource', JSON.stringify(resource));
-    tab.attr('resource-path', resource.path);
-    tab.tooltip();
+  var tab = $('<li data-toggle="tooltip" data-placement="top" title="' + resource.path + '" class="active tab">');
+  tab.attr('resource', JSON.stringify(resource));
+  tab.attr('resource-path', resource.path);
+  tab.tooltip();
 
-    var a = $('<a>');
-    a.text(resource.name);
-    tab.html(a);
+  var a = $('<a>');
+  a.text(resource.name);
+  tab.html(a);
 
-    tab.click(function(){
-        socket.emit('resource.open', resource);
-    });
+  tab.click(function(){
+      socket.emit('resource.open', resource);
+  });
 
-    $('.tab').removeClass('active');
-    $('.tabs').append(tab);
-    tabs.persist();
+  $('.tab').removeClass('active');
+  $('.tabs').append(tab);
+  tabs.persist();
 };
 
 /**
@@ -84,18 +84,18 @@ tabs.select = function(resource) {
  * @param direction
  */
 tabs.move = function(direction) {
-    var activeTab   = $('.tab.active');
-    var element = activeTab[direction]('.tab[resource-path]');
+  var activeTab = $('.tab.active');
+  var element   = activeTab[direction]('.tab[resource-path]');
 
-    if (element.length) {
-        activeTab.removeClass('active');
-        element.addClass('active');
-        events.dispatch('resource.opened', JSON.parse(element.attr('resource')));
-        
-        return true;
-    };
+  if (element.length) {
+    activeTab.removeClass('active');
+    element.addClass('active');
+    events.dispatch('resource.opened', JSON.parse(element.attr('resource')));
     
-    return false;
+    return true;
+  };
+  
+  return false;
 }
 
 /**
