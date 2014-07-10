@@ -79,13 +79,12 @@ keyboard.on(shortcut('file_delete'), function() {
  */
 keyboard.on(shortcut('open_in_github'), function() {
     if (state.openFile && config.get('github.enabled')) {
-        console.log(config.get())
-        var url = 'https://github.com/';
-        username = config.get('github.username');
-        var parts = state.openFile.path.replace(config.get('github.path'), '');
-        var repo = parts.split('/')[1];
-        var path = parts.split(repo)[1];
-        var url = url + username + '/' + repo + '/blob/master/' + path + '#L' + editor.getLine();
+        var url       = 'https://github.com/';
+        var username  = config.get('github.username');
+        var parts     = state.openFile.path.replace(config.get('github.path'), '');
+        var repo      = parts.split('/')[1];
+        var path      = parts.split(repo)[1];
+        var url       = url + username + '/' + repo + '/blob/master/' + path + '#L' + editor.getLine();
 
         window.open(url, '_tab');
     }
