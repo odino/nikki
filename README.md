@@ -109,6 +109,7 @@ while using it (on Macs, simply replace `ctrl` with `⌘`):
 * press `ctrl + shift + x` to switch the focus between the filesystem structure
 and the editor tab (this is handy when you open a file, save it and then
 wanna open another file without using the mouse)
+* press `delete` to delete either a file or a directory
 
 When you are on the editor tab, use your usual shortcuts
 (ie. `tab` to indent, `ctrl + z` to undo), as we are using
