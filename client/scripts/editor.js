@@ -6,6 +6,7 @@ var config      = require('./config');
 var events      = require('./events');
 var utils       = require('./utils');
 var tabs        = require('./tabs');
+var state       = require('./state');
 var sessions    = {};
 var editor      = ace.edit("file");
 
@@ -107,11 +108,14 @@ var saveCurrentSession = function() {
   }
 }
 
-/**
- * Focus on the editor
- */
-events.on('state.focus.tab', function(state){
-  editor.focus();
+editor.on('focus', function(){
+  state.switchFocus('tab');
+});
+
+events.on('state.focus.change', function(state){
+  if (state.focus === 'tab') {
+    editor.blur();
+  }
 });
 
 /**

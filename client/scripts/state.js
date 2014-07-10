@@ -10,11 +10,14 @@ var state   = {
   openFile: null,
   focus:    'fs',
   switchFocus: function(focus) {
+    if (this.focus === focus) {
+      return;
+    }
+    
     events.dispatch('state.focus.change', this);
     events.dispatch('state.focus.' + focus, this);
 
     this.focus = focus;
-    $(document.activeElement).blur();
   }
 }
 

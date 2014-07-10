@@ -20,7 +20,6 @@ var ui = {
     $('#subject span').remove();
     fs.buildTitle(resource.parent);
     $('#subject #navigation').append('<span class="highlight">/' + resource.name + '</span>');
-    state.switchFocus('tab');
     $('#file').attr('filename', resource.path);
     editor.openFile(resource);
   },
