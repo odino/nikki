@@ -24,7 +24,21 @@ editor:
     css:        'css'
     scss:       'scss'
     c:          'c'
-    xml:        'xml'    
+    xml:        'xml' 
+  shortcuts:
+    file_delete:      'delete'
+    file_move_up:     'up'
+    file_move_down:   'down'
+    file_open:        'space'
+    file_save:        'ctrl + s, command + s'
+    focus_switch:     'ctrl + shift + x, command + shift + x'
+    open_in_github:   'ctrl + g, command + g'
+    question_confirm: 'y'
+    question_abort:   'n'
+    search:           'ctrl + shift + f, command + shift + f'
+    tab_close:        'ctrl + shift + l, command + shift + l'
+    tab_move_left:    'ctrl + openanglebracket, command + openanglebracket'
+    tab_move_right:   'ctrl + closeanglebracket, command + closeanglebracket'
 projects:
   default: 'cwd'            # the project we should open by default: can be an absolute path (/var/www), a relative one (~/projects) or the directory from which you launch nikki (cwd)
   ignore:                   # files or directories to ignore

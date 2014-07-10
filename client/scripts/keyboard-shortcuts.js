@@ -5,6 +5,7 @@
  * @type {exports}
  */
 var state           = require('./state');
+var config          = require('./config');
 var keyboard        = require('./keyboard');
 var bar             = require('./bar');
 var search          = require('./search');
@@ -15,9 +16,22 @@ var config          = require('./config');
 var ui              = require('./ui');
 
 /**
+ * Returns a keybord shortcut given its name.
+ */
+var shortcut = function(name) {
+  var shortcut = config.get('editor.shortcuts.' + name);
+  
+  if (!shortcut) {
+    bar.error("Configuration error: please map the '{s}' shortcut".replace('{s}', name));
+  }
+  
+  return shortcut;
+};
+
+/**
  * Delete a file
  */
-keyboard.on('y', function() {
+keyboard.on(shortcut('question_confirm'), function() {
   var question = bar.question();
   
   if (question) {
@@ -33,7 +47,7 @@ keyboard.on('y', function() {
 /**
  * Delete a file
  */
-keyboard.on('n', function() {
+keyboard.on(shortcut('question_abort'), function() {
   var question = bar.question();
   
   if (question) {
@@ -46,7 +60,7 @@ keyboard.on('n', function() {
 /**
  * Delete a file
  */
-keyboard.on('delete', function() {
+keyboard.on(shortcut('file_delete'), function() {
   var activeResource = $('.resource.active');
   
   if (activeResource.length) {
@@ -63,7 +77,7 @@ keyboard.on('delete', function() {
  * 
  * Please note that this feature depends on the configuration.
  */
-keyboard.on('ctrl + g, command + g', function() {
+keyboard.on(shortcut('open_in_github'), function() {
     if (state.openFile && config.get('github.enabled')) {
         console.log(config.get())
         var url = 'https://github.com/';
@@ -82,17 +96,8 @@ keyboard.on('ctrl + g, command + g', function() {
 /**
  * Closes a tab.
  */
-keyboard.on('ctrl + shift + l, command + shift + l', function() {
+keyboard.on(shortcut('tab_close'), function() {
     tabs.closeActive();
-
-    return false;
-});
-
-/**
- * Moves to the tab on the right.
- */
-keyboard.on('ctrl + openanglebracket, command + openanglebracket', function() {
-    tabs.moveLeft();
 
     return false;
 });
@@ -100,7 +105,16 @@ keyboard.on('ctrl + openanglebracket, command + openanglebracket', function() {
 /**
  * Moves to the tab on the left.
  */
-keyboard.on('ctrl + closeanglebracket, command + closeanglebracket', function() {
+keyboard.on(shortcut('tab_move_left'), function() {
+    tabs.moveLeft();
+
+    return false;
+});
+
+/**
+ * Moves to the tab on the right.
+ */
+keyboard.on(shortcut('tab_move_right'), function() {
     tabs.moveRight();
 
     return false;
@@ -109,7 +123,7 @@ keyboard.on('ctrl + closeanglebracket, command + closeanglebracket', function() 
 /**
  * Save file
  */
-keyboard.on('ctrl + s, command + s', function() {
+keyboard.on(shortcut('file_save'), function() {
     if (state.focus === 'tab') {
         bar.alert('Saving...');
         state.openFile.data = editor.getValue();
@@ -123,7 +137,7 @@ keyboard.on('ctrl + s, command + s', function() {
 /**
  * Switch focus
  */
-keyboard.on('ctrl + shift + x, command + shift + x', function() {
+keyboard.on(shortcut('focus_switch'), function() {
     var focus = 'tab';
 
     if (state.focus === 'tab') {
@@ -136,7 +150,7 @@ keyboard.on('ctrl + shift + x, command + shift + x', function() {
 /**
  * Local search
  */
-keyboard.on('ctrl + shift + f, command + shift + f', function() {
+keyboard.on(shortcut('search'), function() {
     search.toggle();
 
     return false;
@@ -145,7 +159,7 @@ keyboard.on('ctrl + shift + f, command + shift + f', function() {
 /**
  * Down arrow
  */
-keyboard.on('down', function() {
+keyboard.on(shortcut('file_move_down'), function() {
     if (state.focus === 'fs') {
         var resource = $('.resource.active');
         var canGoDown = resource.next().hasClass('resource');
@@ -164,7 +178,7 @@ keyboard.on('down', function() {
 /**
  * Up arrow
  */
-keyboard.on('up', function() {
+keyboard.on(shortcut('file_move_up'), function() {
     if (state.focus === 'fs') {
         var resource = $('.resource.active');
         var canGoDown = resource.prev().hasClass('resource');
@@ -183,7 +197,7 @@ keyboard.on('up', function() {
 /**
  * Open files / directories
  */
-keyboard.on('space', function() {
+keyboard.on(shortcut('file_open'), function() {
     if (state.focus === 'fs') {
         var resource = $('.resource.active');
 
