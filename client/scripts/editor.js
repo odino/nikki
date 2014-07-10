@@ -108,10 +108,18 @@ var saveCurrentSession = function() {
   }
 }
 
+/**
+ * Whenever the editor will be focused, we
+ * will switch the global focus on it.
+ */
 editor.on('focus', function(){
   state.switchFocus('tab');
 });
 
+/**
+ * Whenever there is a focus change, we should
+ * blur the editor if we are leaving it.
+ */
 events.on('state.focus.change', function(state){
   if (state.prev === 'tab') {
     editor.blur();
@@ -130,6 +138,9 @@ events.on('tabs.close', function(resource){
   }
 });
 
+/**
+ * Wrapped editor.
+ */
 module.exports = {
   sessions: {},
   getLine: function() {

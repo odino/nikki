@@ -4,6 +4,11 @@ var keyboard    = require('./keyboard');
 var socket      = require('./socket');
 var state       = require('./state');
 
+/**
+ * Hovering on the filesystem will
+ * automatically switch the focus
+ * there.
+ */
 $('#fs').mouseenter(function(){
   state.switchFocus('fs');
   $(this).focus();
@@ -101,6 +106,9 @@ var iconRules = {
     }
 };
 
+/**
+ * Adds an icon based on the resource.
+ */
 var iconize = function(icon, resource) {
     var match = false;
 
@@ -169,6 +177,18 @@ var openDir = function(fs) {
     $('#fs').html('').append(filesystem);
     $('#fs').attr('filesystem', JSON.stringify(fs));
 
+    /**
+     * Super-ghetto trick explained!
+     * 
+     * If we are coming from a popstate we prevent
+     * logging the openDir in the history,
+     * else we will never be able to really go back
+     * as everytime we go back we'd trigger a fs.open
+     * event and adding an entry in the history...
+     * 
+     * Basically we'd go back in history and add a new
+     * entry in it, so you really don't go back...
+     */
     if (!fs.root.from || fs.root.from !== 'window.popstate') {
         history.pushState(fs, null, fs.root.path);
     }
@@ -198,6 +218,15 @@ var reset = function() {
     openDir(getStructure());
 }
 
+/**
+ * Super-ghetto trick!
+ * 
+ * Adding the 'from' state to the FS
+ * object.
+ * 
+ * Look for 'window.popstate' to check
+ * why we need this.
+ */
 window.onpopstate = function(event) {
     if (event.state && event.state.root) {
         root        = event.state.root;
@@ -207,6 +236,10 @@ window.onpopstate = function(event) {
     }
 }
 
+/**
+ * Let's open a new filesystem once the
+ * server sends the related event.
+ */
 socket.on('fs.root', function (fs) {
     openDir(fs);
 });
