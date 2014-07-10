@@ -93,10 +93,10 @@ tabs.move = function(direction) {
     events.dispatch('resource.opened', JSON.parse(element.attr('resource')));
     
     return true;
-  };
+  }
   
   return false;
-}
+};
 
 /**
  * Moves to the tab on the left.
@@ -126,7 +126,7 @@ socket.on('boot.done', function(){
       savedTabs.forEach(function(resource){
           socket.emit('resource.open', JSON.parse(resource))
       });
-    };
+    }
 });
 
 module.exports = tabs;
