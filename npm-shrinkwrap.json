@@ -1,6 +1,6 @@
 {
   "name": "nikki",
-  "version": "0.19.0",
+  "version": "0.20.0",
   "dependencies": {
     "bower": {
       "version": "1.3.6",
@@ -1677,6 +1677,37 @@
               "from": "nan@~1.2.0"
             }
           }
+        }
+      }
+    },
+    "fs-extra": {
+      "version": "0.10.0",
+      "from": "fs-extra@",
+      "resolved": "https://registry.npmjs.org/fs-extra/-/fs-extra-0.10.0.tgz",
+      "dependencies": {
+        "ncp": {
+          "version": "0.5.1",
+          "from": "ncp@^0.5.1",
+          "resolved": "https://registry.npmjs.org/ncp/-/ncp-0.5.1.tgz"
+        },
+        "mkdirp": {
+          "version": "0.5.0",
+          "from": "mkdirp@^0.5.0",
+          "dependencies": {
+            "minimist": {
+              "version": "0.0.8",
+              "from": "minimist@0.0.8"
+            }
+          }
+        },
+        "jsonfile": {
+          "version": "1.2.0",
+          "from": "jsonfile@^1.2.0",
+          "resolved": "https://registry.npmjs.org/jsonfile/-/jsonfile-1.2.0.tgz"
+        },
+        "rimraf": {
+          "version": "2.2.8",
+          "from": "rimraf@^2.2.8"
         }
       }
     },
