@@ -34,7 +34,7 @@ module.exports = {
 
                 socket.on('search', function (options) {
                     debug('client searching', options);
-                    search.findFiles(options, socket);
+                    search.find(options, socket);
                 });
                 
                 socket.on('resource.delete', function (resource) {

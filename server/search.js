@@ -5,7 +5,7 @@
  * @type {*}
  */
 var p       = require('path');
-var dir     = require('node-dir');
+var _       = require('lodash');
 var debug   = require('debug')('nikki:search');
 var config  = require('./config');
 
@@ -39,7 +39,7 @@ search.getRegex = function(text) {
     });
 
     return RegExp(regexString, "ig");
-}
+};
 
 /**
  * Executes a file search on the filesystem,
@@ -50,22 +50,41 @@ search.getRegex = function(text) {
  * @param options
  * @param socket
  */
-search.findFiles = function(options, socket) {
-    var ignoreDirs  = new RegExp(config.get('search.exclude').join('|'), 'g');
-
-    dir.readFiles(options.root.path, {match: search.getRegex(options.text), excludeDir: ignoreDirs}, function(err, content, filename, next) {
-        if (err) throw err;
-        var resource = {
-            path: filename,
-            type: 'file',
-            name: p.basename(filename),
-            parent: p.dirname(filename)
-        };
-
+search.find = function(options, socket) {
+    var notifyResult = function(resource){
         socket.emit('search.result', resource)
         debug('search result ', resource);
-        next();
+    };
+    
+    var finder = require('findit')(options.root.path);
+    
+    finder.on('directory', function (dir, stat, stop) {
+        var base = p.basename(dir);
+
+        if (_.contains(config.get('search.exclude'), base)) {
+          stop();
+        } else {
+          if (dir.match(search.getRegex(options.text))) {
+            notifyResult({
+              path: dir,
+              type: 'directory',
+              name: base,
+              parent: p.dirname(dir)
+            });
+          }
+        }
     });
-}
+    
+    finder.on('file', function (file, stat) {
+        if (file.match(search.getRegex(options.text))) {
+          notifyResult({
+            path: file,
+            type: 'file',
+            name: p.basename(file),
+            parent: p.dirname(file)
+          });
+        }
+    });
+};
 
 module.exports = search;

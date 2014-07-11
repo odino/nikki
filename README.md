@@ -105,7 +105,7 @@ while using it (on Macs, simply replace `ctrl` with `⌘`):
 * use `up` or `down` to move between files / directories
 * press `space` to open a file / directory
 * `ctrl + s` will save the current open file
-* `ctrl + shift + f` will search for files
+* `ctrl + shift + f` will search for files and directories
 * press `ctrl + shift + x` to switch the focus between the filesystem structure
 and the editor tab (this is handy when you open a file, save it and then
 wanna open another file without using the mouse)
@@ -121,16 +121,17 @@ to close a tab simply use `ctrl + shift + l`.
 For a full list of keyboard shortcuts supported by the
 editor visit [its documentation](https://github.com/ajaxorg/ace/wiki/Default-Keyboard-Shortcuts).
 
-## File search
+## File / directory search
 
-When the file search is enabled (`ctrl + shift + f`),
+When the search is enabled (`ctrl + shift + f`),
 you can use a single word or a
-sequence of words to match the filename; long story short:
+sequence of words to match a path; long story short:
 
 * `app` matches `app.js` and `app_production.js`
 * `app prod` only matches `app_production.js`
+* `proj app` matches `/some/path/project/app.js`
 
-By default, nikki will look for files from the current
+Nikki will look for files from the current
 directory onwards.
 
 ## Support

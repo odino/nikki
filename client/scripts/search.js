@@ -80,7 +80,7 @@ var search = {
         bar().addClass('message-search');
         bar().attr('contenteditable', 'true');
 
-        bar().attr('data-ph', 'Search files... (looking in ' + fs.getStructure().root.path + ')');
+        bar().attr('data-ph', 'Search files / directories... (looking in ' + fs.getStructure().root.path + ')');
         bar().show();
         bar().focus();
 
