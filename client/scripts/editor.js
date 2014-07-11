@@ -106,15 +106,7 @@ var saveCurrentSession = function() {
   if (session && sessions.__current) {
     sessions[sessions.__current.name].cursor = editor.getSelection().getCursor();
   }
-}
-
-/**
- * Whenever the editor will be focused, we
- * will switch the global focus on it.
- */
-editor.on('focus', function(){
-  state.switchFocus('tab');
-});
+};
 
 /**
  * Whenever there is a focus change, we should
@@ -124,6 +116,14 @@ events.on('state.focus.change', function(state){
   if (state.prev === 'tab') {
     editor.blur();
   }
+});
+
+/**
+ * Focus on the editor whenever the global
+ * focus points to it.
+ */
+events.on('state.focus.tab', function(){
+  editor.focus();
 });
 
 /**
@@ -153,6 +153,6 @@ module.exports = {
   openFile: function(resource) {
     setSession(resource);
     setFormatting();
-    editor.focus();
+    state.switchFocus('tab');
   }
 };
