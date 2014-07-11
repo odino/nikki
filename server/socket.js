@@ -122,7 +122,7 @@ module.exports = {
             callback && callback();
 
             self.watch(resource, function(){
-              self.openDir(resource, socket, callback);
+              self.openDir(resource, socket);
             });            
         });
     },
