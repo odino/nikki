@@ -5,6 +5,10 @@
   font-size: 5em;
 }
 
+#logo {
+  position: absolute;
+}
+
 .glyphicon {
     font-size: 1.5em;
     margin: 0.5em;
@@ -102,6 +106,7 @@
 }
 
 #subject {
+    padding-left: 8em;
     margin-bottom: 2em;
 }
 
