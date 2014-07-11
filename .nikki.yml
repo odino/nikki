@@ -26,20 +26,21 @@ editor:
     c:          'c'
     xml:        'xml' 
   shortcuts:
-    file_delete:      'delete'
-    file_move_up:     'up'
-    file_move_down:   'down'
-    file_open:        'space'
-    file_save:        'ctrl + s, command + s'
-    find:             'ctrl + shift + f, command + shift + f'
-    focus_switch:     'ctrl + shift + x, command + shift + x'
-    grep:             'ctrl + shift + g, command + shift + g'  # find in files
-    open_in_github:   'ctrl + g, command + g'
-    question_confirm: 'y'
-    question_abort:   'n'
-    tab_close:        'ctrl + shift + l, command + shift + l'
-    tab_move_left:    'ctrl + openanglebracket, command + openanglebracket'
-    tab_move_right:   'ctrl + closeanglebracket, command + closeanglebracket'
+    directory_move_up:  'ctrl + left' # go up one directory (cd ../)
+    file_delete:        'delete'
+    file_move_up:       'up'
+    file_move_down:     'down'
+    file_open:          'space'
+    file_save:          'ctrl + s, command + s'
+    find:               'ctrl + shift + f, command + shift + f'
+    focus_switch:       'ctrl + shift + x, command + shift + x'
+    grep:               'ctrl + shift + g, command + shift + g'  # find in files
+    open_in_github:     'ctrl + g, command + g'
+    question_confirm:   'y'
+    question_abort:     'n'
+    tab_close:          'ctrl + shift + l, command + shift + l'
+    tab_move_left:      'ctrl + openanglebracket, command + openanglebracket'
+    tab_move_right:     'ctrl + closeanglebracket, command + closeanglebracket'
 projects:
   default: 'cwd'            # the project we should open by default: can be an absolute path (/var/www), a relative one (~/projects) or the directory from which you launch nikki (cwd)
   ignore:                   # files or directories to ignore

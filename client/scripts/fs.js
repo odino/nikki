@@ -246,6 +246,17 @@ window.onpopstate = function(event) {
     }
 }
 
+var moveUp = function() {
+  try {
+    var path  = JSON.parse($('#fs').attr('filesystem')).root.path;
+    var parts = path.split('/');
+    parts.pop();
+    path      = parts.join('/');
+
+    socket.emit('resource.open', {path: path});
+  } catch (err) {}
+};
+
 /**
  * Let's open a new filesystem once the
  * server sends the related event.
@@ -258,5 +269,6 @@ module.exports = {
     buildTitle: buildTitle,
     addResource: addResource,
     reset: reset,
+    moveUp: moveUp,
     getStructure: getStructure
 }

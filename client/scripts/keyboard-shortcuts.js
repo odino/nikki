@@ -14,6 +14,7 @@ var socket          = require('./socket');
 var tabs            = require('./tabs');
 var config          = require('./config');
 var ui              = require('./ui');
+var fs              = require('./fs');
 
 /**
  * Returns a keybord shortcut given its name.
@@ -27,6 +28,15 @@ var shortcut = function(name) {
   
   return shortcut;
 };
+
+/**
+ * Delete a file
+ */
+keyboard.on(shortcut('directory_move_up'), function() {
+  if (state.focus === 'fs') {
+    fs.moveUp();
+  }
+});
 
 /**
  * Delete a file
