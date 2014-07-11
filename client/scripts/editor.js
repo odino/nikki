@@ -122,6 +122,14 @@ events.on('state.focus.change', function(state){
  * Focus on the editor whenever the global
  * focus points to it.
  */
+editor.on('focus', function(){
+  state.switchFocus('tab');
+});
+
+/**
+ * If anyone switches the focus from outside,
+ * let's set the focus on the editor as well.
+ */
 events.on('state.focus.tab', function(){
   editor.focus();
 });
