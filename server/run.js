@@ -18,17 +18,16 @@ if (defaultProject === 'cwd') {
   defaultProject = process.cwd();
 }
   
-var url   = 'http://' + host + ':' + port + '/' + defaultProject;
-var open  = _.has(argv, 'open') ? argv.open : config.get('app.open');
+var url         = 'http://' + host + ':' + port + '/' + defaultProject;
+var shouldOpen  = _.has(argv, 'open') ? argv.open : config.get('app.open');
 
 var run = function() {
-  var app = require('http').createServer(handler)
+  var app = require('http').createServer(handler);
   
   app.listen(port);
-  
-  if (open) {
-    var open = require("open");
-    open(url);
+
+  if (shouldOpen) {
+    require("open")(url);
   }
   
   function handler (req, res) {
@@ -56,7 +55,7 @@ module.exports = function() {
   } else {
     daemonize(port);
     
-    if (!open) {
+    if (!shouldOpen) {
       blankline();
       console.log('Open your browser at ' + url + ' to access the IDE')
     }
