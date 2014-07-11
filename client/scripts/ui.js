@@ -38,8 +38,36 @@ var ui = {
    */
   bar: function() {
     return $('#bar');
+  },
+  /**
+   * Returns the bar.
+   *
+   * @returns {*|jQuery|HTMLElement}
+   */
+  focus: function() {
+    return $('#focus');
   }
 };
+
+var focusIcons = {
+  bar: 'fa-search-plus',
+  tab: 'fa-pencil-square',
+  fs: 'fa-folder-open'
+}
+
+/**
+ * Add an icon for the initial, default state.
+ */
+ui.focus().addClass(focusIcons[state.focus]);
+
+/**
+ * When the focus changes, update the focus icon
+ * on the top-right of the screen.
+ */
+events.on('state.focus.change', function(state){
+  ui.focus().removeClass(focusIcons[state.prev]);
+  ui.focus().addClass(focusIcons[state.next]);
+});
 
 events.on('resource.opened', function(resource){
   ui.openFile(resource);
