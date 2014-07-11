@@ -28,6 +28,14 @@ var ui = {
    *
    * @returns {*|jQuery|HTMLElement}
    */
+  preview: function(){
+    return $('#preview');
+  },
+  /**
+   * Returns all the resources.
+   *
+   * @returns {*|jQuery|HTMLElement}
+   */
   resources: function(){
     return $('.resource');
   },

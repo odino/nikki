@@ -1,3 +1,31 @@
+#preview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+  background-color: rgba(0,0,0,0.5);
+}
+
+#preview > div {
+  padding-left: 2em;
+  font-size: 15px;
+  margin: 0 auto;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  width: 70%;
+  background-color: #fff;
+  -webkit-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border-radius: 5px;
+}
+
 #focus {
   position: absolute;
   top: 0.2em;

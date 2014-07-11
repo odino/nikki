@@ -15,6 +15,7 @@ var tabs            = require('./tabs');
 var config          = require('./config');
 var ui              = require('./ui');
 var fs              = require('./fs');
+var preview         = require('./preview');
 
 /**
  * Returns a keybord shortcut given its name.
@@ -28,6 +29,13 @@ var shortcut = function(name) {
   
   return shortcut;
 };
+
+/**
+ * Delete a file
+ */
+keyboard.on(shortcut('file_preview'), function() {
+  preview.toggle();
+});
 
 /**
  * Delete a file

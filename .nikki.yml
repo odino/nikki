@@ -31,6 +31,7 @@ editor:
     file_move_up:       'up'
     file_move_down:     'down'
     file_open:          'space'
+    file_preview:       'ctrl + alt + p' # for example, show rendered markdown files
     file_save:          'ctrl + s, command + s'
     find:               'ctrl + shift + f, command + shift + f'
     focus_switch:       'ctrl + shift + x, command + shift + x'
