@@ -2,7 +2,6 @@
 var gulp = require('gulp'),
     plugins = require('gulp-load-plugins')(),
     runSequence = require('run-sequence'),
-    jshint = require('gulp-jshint'),
     browserify = require('gulp-browserify');
 
 gulp.task('browserify', function() {
