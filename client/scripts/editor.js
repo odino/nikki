@@ -135,6 +135,7 @@ events.on('tabs.close', function(resource){
   
   if (!$('.tab[resource]').length) {
     editor.setValue('');
+    delete sessions.__current;
   }
 });
 
