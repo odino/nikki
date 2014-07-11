@@ -17,6 +17,7 @@ var sanitizePath = function(path) {
 }
 
 module.exports = {
+    watcher: null,
     startTheFun: function(app) {
         var self = this;
         var io   = require('socket.io')(app);
@@ -83,12 +84,14 @@ module.exports = {
         });
     },
     openDir: function(resource, socket, callback) {
+        var self  = this;
         debug('opening dir ', resource);
         resource.path = sanitizePath(resource.path);
 
         fs.readdir(resource.path, function (err, files) {
             if (err && err.code === 'ENOENT') {
               socket.emit('server.error', "Directory {dir} does not exist".replace('{dir}', err.path));
+              return;
             }
           
             resources = [];
@@ -112,6 +115,25 @@ module.exports = {
 
             socket.emit('fs.root', {root: resource, resources: resources});
             callback && callback();
+
+            self.watch(resource, function(){
+              self.openDir(resource, socket, callback);
+            });            
         });
+    },
+    watch: function(resource, callback) {
+      if (!config.get('general.watch')) {
+        return;
+      }
+      
+      var self = this;
+      
+      if (self.watcher) {
+        debug('Stopping previously registered fs watcher')
+        self.watcher.close();
+      }
+      
+      debug('Watching files and directories in', resource.path)
+      self.watcher = fs.watch(resource.path, {}, callback);
     }
 }

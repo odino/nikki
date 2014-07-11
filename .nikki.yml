@@ -60,3 +60,6 @@ github:                         # these configs will affect the "Open in Github"
   default_branch: 'master'
 general:
   process-name: 'nikki'         # name of the process you will find under ps -ef
+  watch:        true            # watch for FS changes: enabled by default, but inconsistent. Disable at will (info: http://nodejs.org/docs/latest/api/fs.html#fs_caveats)
+  
+  
