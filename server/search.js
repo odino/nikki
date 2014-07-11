@@ -42,6 +42,22 @@ search.getRegex = function(text) {
 };
 
 /**
+ * Returns an instance of the finder.
+ */
+search.getFinder = function(path) {
+  return require('findit')(path);
+};
+
+/**
+ * Notifies the client that we've found
+ * something.
+ */
+search.notifyResult = function(resource, socket) {
+  socket.emit('search.result', resource)
+  debug('search result ', resource);  
+};
+
+/**
  * Executes a file search on the filesystem,
  * given the search options, and emits an
  * event to notify that a file has been
@@ -51,12 +67,7 @@ search.getRegex = function(text) {
  * @param socket
  */
 search.find = function(options, socket) {
-  var notifyResult = function(resource){
-      socket.emit('search.result', resource)
-      debug('search result ', resource);
-  };
-  
-  var finder = require('findit')(options.root.path);
+  var finder = search.getFinder(options.root.path);
   
   finder.on('directory', function (dir, stat, stop) {
     var base = p.basename(dir);
@@ -65,25 +76,68 @@ search.find = function(options, socket) {
       stop();
     } else {
       if (dir.match(search.getRegex(options.text))) {
-        notifyResult({
+        search.notifyResult({
           path: dir,
           type: 'directory',
           name: base,
           parent: p.dirname(dir)
-        });
+        }, socket);
       }
     }
   });
   
   finder.on('file', function (file, stat) {
     if (file.match(search.getRegex(options.text))) {
-      notifyResult({
+      search.notifyResult({
         path: file,
         type: 'file',
         name: p.basename(file),
         parent: p.dirname(file)
-      });
+      }, socket);
     }
+  });
+};
+
+/**
+ * Searches for content in files.
+ * 
+ * We are going go tool through all files
+ * in options.root.path and look for the
+ * string options.text in them.
+ * 
+ * In other IDEs, this functionality might
+ * be referred as "Find in files".
+ */
+search.grep = function(options, socket) {
+  var finder =  search.getFinder(options.root.path);
+  
+  finder.on('directory', function (dir, stat, stop) {
+    var base = p.basename(dir);
+
+    if (_.contains(config.get('search.exclude'), base)) {
+      stop();
+    }
+  });
+  
+  finder.on('file', function (file, stat) {
+    fs.readFile(file, 'utf8', function (err,data) {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      
+      var matches = data.match(search.getRegex(options.text));
+      
+      if (matches) {
+        search.notifyResult({
+          path: file,
+          type: 'file',
+          name: p.basename(file),
+          parent: p.dirname(file),
+          misc: matches
+        }, socket);
+      }
+    });
   });
 };
 

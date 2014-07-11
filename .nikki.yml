@@ -31,11 +31,12 @@ editor:
     file_move_down:   'down'
     file_open:        'space'
     file_save:        'ctrl + s, command + s'
+    find:             'ctrl + shift + f, command + shift + f'
     focus_switch:     'ctrl + shift + x, command + shift + x'
+    grep:             'ctrl + shift + g, command + shift + g'  # find in files
     open_in_github:   'ctrl + g, command + g'
     question_confirm: 'y'
     question_abort:   'n'
-    search:           'ctrl + shift + f, command + shift + f'
     tab_close:        'ctrl + shift + l, command + shift + l'
     tab_move_left:    'ctrl + openanglebracket, command + openanglebracket'
     tab_move_right:   'ctrl + closeanglebracket, command + closeanglebracket'

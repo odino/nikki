@@ -150,6 +150,16 @@ var addResource = function(resource) {
       path.text(resource.parent);
       
       res.append(path);
+      
+      if (resource.misc) {
+        resource.misc.forEach(function(misc){
+          var m = $('<p>');
+          m.addClass('misc')
+          m.text("> " + misc + "...");
+          
+          res.append(m);
+        });
+      }
     }
     
     res.hover(function(){

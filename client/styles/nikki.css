@@ -156,3 +156,11 @@
   padding-left: 2.5em;
   color: #7A7A7A;
 }
+
+.resource .misc {
+  font-family: Consolas, Monaco, 'Andale Mono', monospace;
+  word-wrap: break-word; 
+  font-size: 12px;
+  padding-left: 2.5em;
+  color: #314CC4;
+}

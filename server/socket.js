@@ -33,9 +33,14 @@ module.exports = {
 
                 socket.emit('config', config.get());
 
-                socket.on('search', function (options) {
+                socket.on('search.find', function (options) {
                     debug('client searching', options);
                     search.find(options, socket);
+                });
+                
+                socket.on('search.grep', function (options) {
+                    debug('client grepping', options);
+                    search.grep(options, socket);
                 });
                 
                 socket.on('resource.delete', function (resource) {

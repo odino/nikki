@@ -23,7 +23,8 @@ var search = {
     executeSearch: function(text) {
         if (text) {
             $('#fs .resource').remove();
-            socket.emit('search', {text: text, root: fs.getStructure().root});
+            var mode = bar().attr('mode');
+            socket.emit('search.' + mode, {text: text, root: fs.getStructure().root});
         } else {
             fs.reset();
         };
@@ -31,31 +32,14 @@ var search = {
     /**
      * Toggles the search box.
      */
-    toggle: function(global) {
-        global = global || false;
+    toggle: function(mode) {
+        mode = mode || 'find';
 
         if (search.isOpen()) {
             search.hide();
         } else {
-            search.show(global);
+            search.show(mode);
         }
-    },
-    /**
-     * Returns the regex used for the search.
-     *
-     * @returns {RegExp}
-     */
-    getSearchRegex: function() {
-        var regexString = '';
-
-        bar().text().split('').forEach(function(letter){
-            letter = letter.trim();
-            if (letter) {
-                regexString += "(.*)(" + letter + ")"
-            }
-        });
-
-        return new RegExp(regexString, "i");
     },
     /**
      * Hides the search box.
@@ -71,7 +55,7 @@ var search = {
     /**
      * Shows the search box.
      */
-    show: function(global) {
+    show: function(mode) {
         bar().empty();
         state.switchFocus('bar');
 
@@ -79,8 +63,15 @@ var search = {
         bar().removeClass();
         bar().addClass('message-search');
         bar().attr('contenteditable', 'true');
+        bar().attr('mode', mode);
 
-        bar().attr('data-ph', 'Search files / directories... (looking in ' + fs.getStructure().root.path + ')');
+        var placeholder = 'Search files / directories';
+        
+        if (bar().attr('mode') === 'grep') {
+          placeholder = 'Find in files';
+        }
+
+        bar().attr('data-ph', placeholder + '... (looking in ' + fs.getStructure().root.path + ')');
         bar().show();
         bar().focus();
 

@@ -106,6 +106,7 @@ while using it (on Macs, simply replace `ctrl` with `⌘`):
 * press `space` to open a file / directory
 * `ctrl + s` will save the current open file
 * `ctrl + shift + f` will search for files and directories
+* `ctrl + shift + g` will search in files
 * press `ctrl + shift + x` to switch the focus between the filesystem structure
 and the editor tab (this is handy when you open a file, save it and then
 wanna open another file without using the mouse)

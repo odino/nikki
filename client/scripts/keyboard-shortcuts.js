@@ -149,8 +149,17 @@ keyboard.on(shortcut('focus_switch'), function() {
 /**
  * Local search
  */
-keyboard.on(shortcut('search'), function() {
+keyboard.on(shortcut('find'), function() {
     search.toggle();
+
+    return false;
+});
+
+/**
+ * Local search
+ */
+keyboard.on(shortcut('grep'), function() {
+    search.toggle('grep');
 
     return false;
 });
