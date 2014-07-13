@@ -24,15 +24,15 @@ var configuration = {
 var config = new reconfig(configuration);
 
 config.reload = function() {
+  _.forEach(config.get('paths'), function(path){
     try {
-        _.forEach(config.get('paths'), function(path){
-            var filePath  = p.join(path, '.nikki.yml');
-            config.config = _.merge(config.config, yaml.safeLoad(fs.readFileSync(filePath, 'utf8')));
-            debug('Loaded config in ', filePath)
-        });
+      var filePath  = p.join(path, '.nikki.yml');
+      config.config = _.merge(config.config, yaml.safeLoad(fs.readFileSync(filePath, 'utf8')));
+      debug('Loaded config in ', filePath)
     } catch (err) {
       debug('Warning while loading the config ', err)
     };
+  });
 };
 
 config.reload();
