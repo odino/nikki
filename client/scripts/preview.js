@@ -48,7 +48,9 @@ preview.toggle = function(){
       
       overlay.html(content);
       $('body').prepend(overlay);
+      $('body').addClass('overlayed');
     } else {
+      $('body').removeClass('overlayed');
       overlay.remove();
     }
   } else {
