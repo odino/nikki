@@ -1,6 +1,6 @@
 {
   "name": "nikki",
-  "version": "0.27.3",
+  "version": "0.27.4",
   "description": "A browser-based IDE written in NodeJS. For Real.",
   "main": "server/index.js",
   "scripts": {
