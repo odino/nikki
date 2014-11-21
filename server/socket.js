@@ -80,7 +80,13 @@ module.exports = {
 
                 socket.on('resource.save', function(resource){
                     fs.writeFile(resource.path, resource.data, function(err) {
-                        if (err) throw err;
+                        if (err) {
+                            var message = "Unable to save file {f} -- do you have permissions to write to it? (error code: {c})".replace('{f}', resource.path).replace('{c}', err.code);
+
+                            socket.emit('server.error', message);
+
+                            return;
+                        };
                         socket.emit('resource.saved', resource);
                     });
                     debug('saved resource ', resource);
