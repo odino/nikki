@@ -105,6 +105,7 @@ while using it (on Macs, simply replace `ctrl` with `⌘`):
 * use `up` or `down` to move between files / directories
 * press `space` to open a file / directory
 * `ctrl + s` will save the current open file
+* `ctrl + f` to find a string in the current file
 * `ctrl + shift + f` will search for files and directories
 * `ctrl + shift + g` will search in files
 * press `ctrl + shift + x` to switch the focus between the filesystem structure
