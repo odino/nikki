@@ -25,6 +25,7 @@ editor:
     scss:       'scss'
     c:          'c'
     xml:        'xml' 
+    go:         'golang'
   shortcuts:
     directory_move_up:  'ctrl + left' # go up one directory (cd ../)
     file_delete:        'delete'
