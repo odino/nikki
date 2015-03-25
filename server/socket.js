@@ -109,13 +109,17 @@ module.exports = {
 
             _.each(files, function(file){
                 var path = p.join(resource.path, file);
-
-                resources.push({
-                    type:   fs.lstatSync(path).isDirectory() ? 'directory' : 'file',
-                    name:   file,
-                    parent: resource.path,
-                    path:   path
-                });
+                
+                try {
+                  resources.push({
+                      type:   fs.lstatSync(path).isDirectory() ? 'directory' : 'file',
+                      name:   file,
+                      parent: resource.path,
+                      path:   path
+                  });
+                } catch (err) {
+                  socket.emit('server.error', "An error occurred doing a stat of {path}".replace('{path}', path));
+                }
             });
 
             var resources = _.filter(_.sortBy(resources, function(resource) {
