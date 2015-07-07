@@ -18,7 +18,7 @@ like you're on your (ex) favourite IDE.
 ## Installation
 
 The recommended way to install nikki is to do it
-globally:
+globally (currently, node `0.10` is supported):
 
 ```
 npm install -g nikki
