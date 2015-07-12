@@ -24,6 +24,8 @@ globally (currently, node `0.10` is supported):
 npm install -g nikki
 ```
 
+Last tested on a node `v0.10.39`, but any `0.10.X` should work.
+
 ## Usage
 
 [![ScreenShot](https://raw.githubusercontent.com/odino/nikki/master/bin/images/nikki-ss.png?token=328420__eyJzY29wZSI6IlJhd0Jsb2I6b2Rpbm8vbmlra2kvbWFzdGVyL2Jpbi9pbWFnZXMvbmlra2kuZ2lmIiwiZXhwaXJlcyI6MTQwMzk4MDA4N30%3D--df43445fcfba173ae878bc6447c1169b61bc59cf)](https://raw.githubusercontent.com/odino/nikki/master/bin/images/nikki-ss.png?token=328420__eyJzY29wZSI6IlJhd0Jsb2I6b2Rpbm8vbmlra2kvbWFzdGVyL2Jpbi9pbWFnZXMvbmlra2kuZ2lmIiwiZXhwaXJlcyI6MTQwMzk4MDA4N30%3D--df43445fcfba173ae878bc6447c1169b61bc59cf)
