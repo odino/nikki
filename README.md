@@ -1,3 +1,5 @@
+> Nikki is dead :) Read why [here](http://odino.org/i-have-built-my-own-ide-and-im-happy-to-trash-it-after-a-year/)
+
 <img align="right" width="250px" src="http://openclipart.org/people/FEN/FEN_Bad_hair_day.svg" />
 
 # Nikki
